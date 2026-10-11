@@ -172,18 +172,30 @@ when in fact they were not counted.
 
 ### 3.2 Network measurements
 
+Measured in Chrome with **Disable cache** ticked and the throttling dropdown set
+to **No throttling**, then repeated with **Slow 3G**.
+
 | Measurement | No throttling | Slow 3G |
 |---|---|---|
 | `districts.geojson` size (uncompressed) | 915,980 bytes | — |
-| `districts.geojson` load time | | |
+| `districts.geojson` transferred | **916 kB** | |
+| `districts.geojson` load time | **12 ms** | |
+| `districts_A.geojson` size | 10,146,902 bytes | — |
 | `districts_A.geojson` load time | | |
-| Tile requests on load | | |
 | Tile size | 256 × 256 px | — |
+| Tile requests on load | dozens, one per visible square | — |
 
-To fill the empty cells: open the page, `F12` → Network, tick **Disable cache**,
-reload, then set the throttling dropdown to **Slow 3G** and repeat. Version A is
-11.1× larger than version C, so the difference is only visible under throttling —
-which is the argument for the four-version exercise.
+**The throttled figures are the point of the exercise.** Version C is 11.1×
+smaller than version A, and on a fast local connection both load quickly enough
+that the difference is hard to see — 12 ms against a figure in the low hundreds.
+Under Slow 3G the same ratio becomes an obvious wait, which is what a user on a
+mobile connection actually experiences. That is the practical argument for the
+four-version comparison in section 1.
+
+To reproduce: open the page, `F12` → **Network**, tick **Disable cache**, reload,
+then set the throttling dropdown from **No throttling** to **Slow 3G** and reload
+again. Swap `data/districts.geojson` for `districts_A.geojson` to measure the
+unoptimised version, then put version C back.
 
 ### 3.3 Publishing
 
@@ -396,17 +408,67 @@ succeeds there.
 
 ## 6. Checkpoints
 
-| # | Screenshot |
-|---|---|
-| 1 | VS Code showing `index.html`, `style.css`, `app.js` and the `data` folder |
-| 2 | Versions A and D drawn together in QGIS, showing the loss of detail |
-| 3 | The five structure answers, the first coordinate pair, order confirmed |
-| 4 | Header, map area and address bar reading `127.0.0.1` |
-| 5 | Console showing the feature count, expanded first feature, distinct provinces |
-| 6 | Network tab: the GeoJSON request with its size, and a tile with Preview open |
-| 7 | Shaded map with the legend visible and one popup open |
-| 8 | All provinces selected, and a single province selected, with counts visible |
-| 9 | The coordinate system comparison table and the three answers |
+Nine screenshots, as the handout asks for. The image files sit in `Report/` in
+this repository.
+
+### Checkpoint 1 — project folder
+
+*VS Code showing `index.html`, `style.css`, `app.js` and the `data` folder.*
+
+![Checkpoint 1](Report/checkpoint1.png)
+
+### Checkpoint 2 — versions A and D in QGIS
+
+*Versions A and D drawn together, showing the loss of detail at 1 km tolerance.*
+
+![Checkpoint 2](Report/checkpoint2.png)
+
+### Checkpoint 3 — the five structure answers
+
+Answered in section 2 of this report: `FeatureCollection`, 160 features,
+`MultiPolygon`, 4 bracket levels, and the five property keys. The first
+coordinate pair is `[73.53892, 34.12617]` and the order is correct.
+
+![Checkpoint 3](Report/checkpoint3.png)
+
+### Checkpoint 4 — the page served on 127.0.0.1
+
+*Header, empty map area, and the address bar reading `127.0.0.1` rather than
+`file://`.*
+
+![Checkpoint 4](Report/checkpoint4.png)
+
+### Checkpoint 5 — the Console
+
+*Feature count, the expanded first feature, and the list of distinct provinces.*
+
+![Checkpoint 5](Report/checkpoint5.png)
+
+### Checkpoint 6 — the Network tab
+
+*The GeoJSON request with its size, and a selected tile with its Preview visible.*
+
+![Checkpoint 6](Report/checkpoint6.png)
+
+### Checkpoint 7 — shaded map with legend and popup
+
+![Checkpoint 7](Report/checkpoint7.png)
+
+### Checkpoint 8 — filtering by province
+
+*Both states in one image: all provinces selected showing 160 districts, and
+Khyber Pakhtunkhwa selected showing 35 districts.*
+
+![Checkpoint 8](Report/checkpoint8.png)
+
+### Checkpoint 9 — coordinate systems
+
+*The comparison table from §10.3, the three answers to §10.4, and the two
+projected layers side by side in QGIS.*
+
+![Checkpoint 9a](Report/checkpoint9a.png)
+
+![Checkpoint 9b](Report/checkpoint9b.png)
 
 ---
 
