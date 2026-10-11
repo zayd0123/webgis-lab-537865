@@ -15,6 +15,20 @@ National University of Sciences and Technology, Islamabad
 
 ---
 
+## 0. Setting up
+
+Created the project folder, connected it to a new public repository, and
+made the three files the lab asks for — `index.html` for structure,
+`style.css` for appearance, `app.js` for behaviour — alongside an empty
+`data` folder for the layer the map would serve.
+
+### Checkpoint 1 — the project folder
+
+*VS Code showing `webgis-lab` with `index.html`, `style.css`, `app.js`
+and the empty `data` folder.*
+
+![Checkpoint 1](Report/checkpoint1.png)
+
 ## 1. File size measurements
 
 Four versions of the same 160 districts, exported from the COD-AB administrative
@@ -72,6 +86,14 @@ dropped two of the country's 42 separate landmass fragments. It is suited to a
 thumbnail or a national overview, and unsuited to a map someone will inspect at
 city scale, where the cuts across bays and river mouths are plainly visible.
 
+### Checkpoint 2 — versions A and D in QGIS
+
+*The two extremes drawn together. The red outline is version A, the grey
+fill is version D, and the magnified inset shows where D's 1 km tolerance
+cuts across detail that A follows.*
+
+![Checkpoint 2](Report/checkpoint2.png)
+
 ### A discrepancy in the handout
 
 The handout instructs keeping **Preserve topology** enabled in the Simplify
@@ -82,14 +104,13 @@ districts intact at 42 parts with an area change of −0.0097%, and the output w
 geometrically identical to GDAL's `ogr2ogr -simplify` — 44,773 vertices both
 ways, 160 of 160 features matching, Hausdorff distance 0.
 
-> **Checkpoint 2** — versions A and D drawn together in QGIS, showing the loss of
-> detail.
-
 ---
+
 
 ## 2. Reading the data as text
 
 ### 4.2 Structure
+
 
 1. Outermost object type: **`FeatureCollection`**
 2. Entries in the `features` array: **160**
@@ -122,16 +143,35 @@ The first and last pairs of the first polygon's outer ring are both
 **`[73.53892, 34.12617]`**, so the ring closes. All **204 rings** in the file close
 correctly, so no renderer will reject the file.
 
-> **Checkpoint 3** — the five structure answers, the first coordinate pair, and
-> confirmation that the order is correct.
+### Checkpoint 3 — the five structure answers
+
+*The handwritten answers and the first coordinate pair, with the order
+confirmed.*
+
+![Checkpoint 3](Report/checkpoint3.png)
 
 ---
+
 
 ## 3. The map
 
 `index.html`, `style.css` and `app.js`, kept in three files as the lab specifies.
 The page loads the GeoJSON with `fetch`, draws all 160 districts, and lets the user
 filter by province from a drop-down built from the data.
+
+### Checkpoint 4 — the page on 127.0.0.1
+
+*The three source files, and the page served over `http://` rather than
+`file://`. The address bar is the evidence that matters.*
+
+![Checkpoint 4](Report/checkpoint4.png)
+
+### Checkpoint 5 — the Console
+
+*`features: 160`, the expanded first feature showing Bagh with its five
+properties, and the seven distinct provinces returned by the `Set` call.*
+
+![Checkpoint 5](Report/checkpoint5.png)
 
 Run it locally:
 
@@ -214,15 +254,42 @@ then move the throttling dropdown from **No throttling** to **Slow 3G** and
 reload again. Swap `data/districts.geojson` for `districts_A.geojson` to measure
 the unoptimised version, then restore version C.
 
+### Checkpoint 6 — the Network tab
+
+*`districts.geojson` transferred in 916 kB over 12 ms with caching
+disabled, and a single tile opened in Preview — one 256 × 256 square of
+map, which is why a page load produces dozens of tile requests.*
+
+![Checkpoint 6](Report/checkpoint6.png)
+
+### Checkpoint 7 — shaded map, legend and popup
+
+*All five classes plus the grey no-data class, with the legend bottom
+right and a popup open on Killa Saifullah.*
+
+![Checkpoint 7](Report/checkpoint7.png)
+
 ### 3.3 Publishing
 
-Committed to `webgis-lab-537865` and served from GitHub Pages at
-<https://zayd0123.github.io/webgis-lab-537865/>.
+Committed to `webgis-lab-537865` and served from GitHub Pages.
 
-> **Checkpoints 1, 4, 5, 6, 7, 8** — the nine screenshots listed at the end of
-> this report.
+| | |
+|---|---|
+| Repository | <https://github.com/zayd0123/webgis-lab-537865> |
+| Live page | <https://zayd0123.github.io/webgis-lab-537865/> |
+
+The page is served over `https://`, so the `fetch` for the district layer
+succeeds there for the same reason it needs a local server during development.
 
 ---
+
+### Checkpoint 8 — filtering by province
+
+*Both states in one image: all provinces selected showing 160 districts,
+and Khyber Pakhtunkhwa selected showing 35. The count in the panel updates
+with each change, and the legend stays in place.*
+
+![Checkpoint 8](Report/checkpoint8.png)
 
 ## 4. Coordinate systems and area
 
@@ -246,6 +313,15 @@ gives two different answers.
 
 National totals: Web Mercator **1,176,739 km²**, UTM 43N **884,987 km²**, a
 difference of **33.0%** over the same 160 polygons.
+
+### Checkpoint 9 — coordinate systems
+
+*The comparison table from §4.1, the three answers to §10.4, and the two
+projected layers drawn together in QGIS.*
+
+![Checkpoint 9a](Report/checkpoint9a.png)
+
+![Checkpoint 9b](Report/checkpoint9b.png)
 
 ### 4.2 Does the percentage difference grow or shrink as you move north?
 
@@ -321,8 +397,6 @@ above, only Lahore and Gilgit actually lie in 43N; Peshawar and Thatta are in 42
 and Gwadar in 41N. Measuring a district outside its own zone inflates it — Gwadar
 by 3.6% in 43N. The table reports the handout's single-zone figures; a per-zone
 measurement is also given in the accompanying measurement tables.
-
-> **Checkpoint 9** — the comparison table and the three answers.
 
 ---
 
@@ -423,69 +497,23 @@ succeeds there.
 
 ---
 
-## 6. Checkpoints
+## 6. Checkpoint index
 
-Nine screenshots, as the handout asks for. The image files sit in `Report/` in
-this repository.
+The nine checkpoint screenshots appear beside the work they document, rather than
+collected at the end. This table locates them.
 
-### Checkpoint 1 — project folder
+| # | Checkpoint | Section |
+|---|---|---|
+| 1 | Project folder, files and empty `data` folder | §0, before the measurements |
+| 2 | Versions A and D together in QGIS | §1, after the size table |
+| 3 | The five structure answers | §2 |
+| 4 | The page served on `127.0.0.1` | §3 |
+| 5 | The Console: features, first feature, provinces | §3 |
+| 6 | The Network tab: request size and tile preview | §3.2 |
+| 7 | Shaded map with legend and popup | §3.3 |
+| 8 | Filtering by province | §3.3 |
+| 9 | Coordinate systems table and answers | §4.1 |
 
-*VS Code showing `index.html`, `style.css`, `app.js` and the `data` folder.*
-
-![Checkpoint 1](Report/checkpoint1.png)
-
-### Checkpoint 2 — versions A and D in QGIS
-
-*Versions A and D drawn together, showing the loss of detail at 1 km tolerance.*
-
-![Checkpoint 2](Report/checkpoint2.png)
-
-### Checkpoint 3 — the five structure answers
-
-Answered in section 2 of this report: `FeatureCollection`, 160 features,
-`MultiPolygon`, 4 bracket levels, and the five property keys. The first
-coordinate pair is `[73.53892, 34.12617]` and the order is correct.
-
-![Checkpoint 3](Report/checkpoint3.png)
-
-### Checkpoint 4 — the page served on 127.0.0.1
-
-*Header, empty map area, and the address bar reading `127.0.0.1` rather than
-`file://`.*
-
-![Checkpoint 4](Report/checkpoint4.png)
-
-### Checkpoint 5 — the Console
-
-*Feature count, the expanded first feature, and the list of distinct provinces.*
-
-![Checkpoint 5](Report/checkpoint5.png)
-
-### Checkpoint 6 — the Network tab
-
-*The GeoJSON request with its size, and a selected tile with its Preview visible.*
-
-![Checkpoint 6](Report/checkpoint6.png)
-
-### Checkpoint 7 — shaded map with legend and popup
-
-![Checkpoint 7](Report/checkpoint7.png)
-
-### Checkpoint 8 — filtering by province
-
-*Both states in one image: all provinces selected showing 160 districts, and
-Khyber Pakhtunkhwa selected showing 35 districts.*
-
-![Checkpoint 8](Report/checkpoint8.png)
-
-### Checkpoint 9 — coordinate systems
-
-*The comparison table from §10.3, the three answers to §10.4, and the two
-projected layers side by side in QGIS.*
-
-![Checkpoint 9a](Report/checkpoint9a.png)
-
-![Checkpoint 9b](Report/checkpoint9b.png)
 
 ---
 
