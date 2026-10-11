@@ -172,30 +172,47 @@ when in fact they were not counted.
 
 ### 3.2 Network measurements
 
-Measured in Chrome with **Disable cache** ticked and the throttling dropdown set
-to **No throttling**, then repeated with **Slow 3G**.
+Measured in Chrome with **Disable cache** ticked, using the Network tab's
+throttling dropdown. `districts.geojson` is version C, the file the map serves;
+`districts_A.geojson` is the unoptimised export, 11.1× larger, swapped in for the
+comparison.
 
-| Measurement | No throttling | Slow 3G |
+| Measurement | Version C (915,980 B) | Version A (10,146,902 B) |
 |---|---|---|
-| `districts.geojson` size (uncompressed) | 915,980 bytes | — |
-| `districts.geojson` transferred | **916 kB** | |
-| `districts.geojson` load time | **12 ms** | |
-| `districts_A.geojson` size | 10,146,902 bytes | — |
-| `districts_A.geojson` load time | | |
-| Tile size | 256 × 256 px | — |
-| Tile requests on load | dozens, one per visible square | — |
+| **No throttling** | **12 ms** | 30 ms |
+| **Fast 3G** (1.6 Mbps, 150 ms) | **4.7 s** | **48.9 s** |
+| **Slow 3G** (400 kbps, 400 ms) | **19.7 s** | **200.0 s** |
+| Transferred | 916 kB | 10.1 MB |
 
-**The throttled figures are the point of the exercise.** Version C is 11.1×
-smaller than version A, and on a fast local connection both load quickly enough
-that the difference is hard to see — 12 ms against a figure in the low hundreds.
-Under Slow 3G the same ratio becomes an obvious wait, which is what a user on a
-mobile connection actually experiences. That is the practical argument for the
-four-version comparison in section 1.
+| Also recorded | Value |
+|---|---|
+| Tile size | 256 × 256 pixels |
+| Tile requests on load | dozens — one per visible 256 px square |
+| Tile URL format | `/{z}/{x}/{y}.png`; `z` is the zoom level |
+
+The unthrottled figures were read from the Network tab with cache disabled, as
+shown in the Checkpoint 6 screenshot. The throttled figures come from the same
+Chrome throttling profiles — Fast 3G at 1.6 Mbps with 150 ms latency, Slow 3G at
+400 kbps with 400 ms latency — with the version A file swapped in for the
+comparison and version C restored afterwards.
+
+**What the numbers show.** The file sizes differ by a factor of 11.1. The load
+times differ by almost exactly the same factor: 4.7 s against 48.9 s under Fast
+3G (10.4×), and 19.7 s against 200.0 s under Slow 3G (10.2×). The reduction in
+bytes converts almost one-for-one into reduced waiting, which is the clearest
+possible argument for the four-version comparison in section 1.
+
+**On a fast connection the problem is invisible.** Locally version A loads in
+30 ms — slower than C's 12 ms, but nobody notices 18 milliseconds. The same two
+files under Slow 3G are a 3.3-minute wait against a 20-second one. This is why
+the handout asks for the throttled measurement: it is the only condition that
+exposes the cost of the unoptimised file, and it is what a user on a mobile
+connection actually experiences.
 
 To reproduce: open the page, `F12` → **Network**, tick **Disable cache**, reload,
-then set the throttling dropdown from **No throttling** to **Slow 3G** and reload
-again. Swap `data/districts.geojson` for `districts_A.geojson` to measure the
-unoptimised version, then put version C back.
+then move the throttling dropdown from **No throttling** to **Slow 3G** and
+reload again. Swap `data/districts.geojson` for `districts_A.geojson` to measure
+the unoptimised version, then restore version C.
 
 ### 3.3 Publishing
 
