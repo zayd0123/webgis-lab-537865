@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+._*
+
+# editors
+.vscode/
+*.code-workspace
+
+# Office lock files
+~$*
+
+# raw source data is not committed; see the lab folder for the shapefile
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
