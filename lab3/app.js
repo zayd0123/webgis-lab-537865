@@ -46,13 +46,22 @@ const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //
 // Carto has since put its basemaps behind an API key: without one, Positron
 // returns a 256 px "API KEY REQUIRED" placeholder as a 200 OK, so the default
-// basemap drew that watermark instead of a map. The parameter is `key` - not
-// `api_key`, which is silently ignored and keeps serving the placeholder - and
-// the key is restricted by Referer to the published site, so it only works on
-// zayd0123.github.io. Locally, swap in the localhost key from the Carto
-// dashboard, or this basemap will 403 and Leaflet will draw an empty tile.
-// The URL template, the subdomains and the attribution are otherwise untouched.
-const CARTO_KEY = 'cb1_4iei_1_cecead15e5448ff173211382';
+// basemap drew that watermark instead of a map.
+//
+// Two details in the request fail silently and are worth knowing:
+//   - the parameter is `key`, not `api_key`. With `?api_key=` the endpoint
+//     keeps serving the placeholder and nothing appears in the console.
+//   - the key is restricted by Referer, so it only answers for the host it was
+//     registered for.
+//
+// Carto requires local hosts to be on a key of their own, so there are two,
+// both free, and the page picks by hostname. Neither is a secret: on a static
+// page the key is in this file for anyone to read, and the Referer restriction
+// is what makes that safe. Picking the wrong one for the host gives a 403 and
+// an empty tile, which is why this is chosen by hostname rather than hard-coded.
+const CARTO_KEY = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+  ? 'cb1_4ien_1_567c805c3e15c0a5a6e997d3'   // local development
+  : 'cb1_4iei_1_cecead15e5448ff173211382';  // zayd0123.github.io
 
 const positron = L.tileLayer(
   'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=' + CARTO_KEY, {

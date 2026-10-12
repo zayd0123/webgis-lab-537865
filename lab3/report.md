@@ -82,12 +82,29 @@ the handout publishes them, so Part 3's lesson about copying a provider's
 template precisely still stands, and the watermark is gone from the published
 page.
 
-**Locally**, the Referer is `localhost` rather than `zayd0123.github.io`, and
-Carto requires local hosts to be on a key of their own, so a second key was
-registered for that. The figures in this report were captured with
-**OpenStreetMap** selected, so that they are reproducible without any key at
-all; the density shading, the circles, the info panel and the legend are
-identical whichever basemap is underneath.
+**Locally** the Referer is `localhost`, not `zayd0123.github.io`, and Carto
+requires local hosts to be on a key of their own — it refuses to let
+`localhost` and a real domain share one key. So two free keys were registered
+and `app.js` picks between them by hostname:
+
+```js
+const CARTO_KEY = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+  ? 'cb1_…ien…'   // local development
+  : 'cb1_…iei…';  // zayd0123.github.io
+```
+
+Both were checked from the host they belong to: each returns real Positron
+tiles where it should, and each returns `403 Forbidden` when presented from the
+other one's Referer. Picking the wrong key for the host is exactly the mistake
+this arrangement prevents, and it is the failure that looks like a blank map
+rather than an error.
+
+That means the basemap works with no manual change in both places, which is why
+`lab3/verify_carto_basemap.mjs` passes against the published site and against
+`localhost` alike. The figures in this report were nonetheless captured with
+**OpenStreetMap** selected, so they stay reproducible by anyone without a key;
+the density shading, the circles, the info panel and the legend are identical
+whichever basemap is underneath.
 
 ---
 
