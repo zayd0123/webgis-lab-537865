@@ -61,3 +61,42 @@ h1 { margin: 0; font-size: 24px; }
 }
 
 .legend svg { display: block; margin-top: 4px; }
+
+.legend .muted { color: #6b7a7e; font-size: 11px; }
+
+/* Extension 2: the density labels drawn at zoom 8 and above. They sit on the
+   district itself, so they are kept small, dark and unboxed - 160 bordered
+   boxes at once would hide the shading they are describing. A white halo
+   keeps them legible over both the pale and the dark classes. */
+.density-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: #10212b;
+  text-shadow:
+     0 0 2px #fff,  0 0 2px #fff,  0 0 2px #fff,
+     0 0 3px #fff,  0 0 3px #fff;
+}
+
+/* the little arrow under a permanent tooltip would sit over the district */
+.density-label::before { display: none; }
+
+/* Extension 1: clusters should not shout louder than the data. The plugin's
+   default green is louder than anything else on the page, so it is toned to
+   the same teal used for the NUST overlay. */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background-color: rgba(15, 118, 110, .25);
+}
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background-color: rgba(15, 118, 110, .85);
+  color: #fff;
+  font-weight: 600;
+}
