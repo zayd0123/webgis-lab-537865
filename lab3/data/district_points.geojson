@@ -1,0 +1,2725 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Bagh",
+        "province": "Azad Kashmir",
+        "pcode": "PK101",
+        "pop_2023": null,
+        "area_km2": 694.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.74787,
+          34.00442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Bhimber",
+        "province": "Azad Kashmir",
+        "pcode": "PK102",
+        "pop_2023": null,
+        "area_km2": 1212.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.14355,
+          33.01496
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Jhelum Valley",
+        "province": "Azad Kashmir",
+        "pcode": "PK103",
+        "pop_2023": null,
+        "area_km2": 681.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.80284,
+          34.18789
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Haveli",
+        "province": "Azad Kashmir",
+        "pcode": "PK104",
+        "pop_2023": null,
+        "area_km2": 550.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.10091,
+          33.93483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kotli",
+        "province": "Azad Kashmir",
+        "pcode": "PK105",
+        "pop_2023": null,
+        "area_km2": 1599.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.87797,
+          33.45534
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Mirpur",
+        "province": "Azad Kashmir",
+        "pcode": "PK106",
+        "pop_2023": null,
+        "area_km2": 896.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.74386,
+          33.23851
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Muzaffarabad",
+        "province": "Azad Kashmir",
+        "pcode": "PK107",
+        "pop_2023": null,
+        "area_km2": 1361.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.60905,
+          34.32337
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Neelum",
+        "province": "Azad Kashmir",
+        "pcode": "PK108",
+        "pop_2023": null,
+        "area_km2": 3137.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.25468,
+          34.75746
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Poonch",
+        "province": "Azad Kashmir",
+        "pcode": "PK109",
+        "pop_2023": null,
+        "area_km2": 719.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.81444,
+          33.78572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sudhnoti",
+        "province": "Azad Kashmir",
+        "pcode": "PK110",
+        "pop_2023": null,
+        "area_km2": 567.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.76247,
+          33.70363
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Awaran",
+        "province": "Balochistan",
+        "pcode": "PK201",
+        "pop_2023": 178958,
+        "area_km2": 24989.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          65.19208,
+          26.42405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Barkhan",
+        "province": "Balochistan",
+        "pcode": "PK202",
+        "pop_2023": 210249,
+        "area_km2": 3515.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.56835,
+          29.98485
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Chagai",
+        "province": "Balochistan",
+        "pcode": "PK203",
+        "pop_2023": 269192,
+        "area_km2": 44476.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.17741,
+          28.8753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Dera Bugti",
+        "province": "Balochistan",
+        "pcode": "PK204",
+        "pop_2023": 355274,
+        "area_km2": 10294.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.02398,
+          29.05955
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Gwadar",
+        "province": "Balochistan",
+        "pcode": "PK205",
+        "pop_2023": 305160,
+        "area_km2": 11574.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.42453,
+          25.42516
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Harnai",
+        "province": "Balochistan",
+        "pcode": "PK206",
+        "pop_2023": 127571,
+        "area_km2": 3063.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.8147,
+          30.04183
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Jaffarabad",
+        "province": "Balochistan",
+        "pcode": "PK207",
+        "pop_2023": 594558,
+        "area_km2": 1701.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.03041,
+          28.24848
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Jhal Magsi",
+        "province": "Balochistan",
+        "pcode": "PK208",
+        "pop_2023": 203368,
+        "area_km2": 3860.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.48152,
+          28.37004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kachhi",
+        "province": "Balochistan",
+        "pcode": "PK209",
+        "pop_2023": 442612,
+        "area_km2": 5363.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.54923,
+          29.34069
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kalat",
+        "province": "Balochistan",
+        "pcode": "PK210",
+        "pop_2023": 272506,
+        "area_km2": 10179.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.7397,
+          29.08959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kech",
+        "province": "Balochistan",
+        "pcode": "PK211",
+        "pop_2023": 1060931,
+        "area_km2": 24419.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.14818,
+          26.00831
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kharan",
+        "province": "Balochistan",
+        "pcode": "PK212",
+        "pop_2023": 260352,
+        "area_km2": 8215.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          65.53759,
+          28.73023
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Khuzdar",
+        "province": "Balochistan",
+        "pcode": "PK213",
+        "pop_2023": 997214,
+        "area_km2": 30954.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.49765,
+          27.29576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Killa Abdullah",
+        "province": "Balochistan",
+        "pcode": "PK214",
+        "pop_2023": 361971,
+        "area_km2": 2993.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.75094,
+          30.69891
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Killa Saifullah",
+        "province": "Balochistan",
+        "pcode": "PK215",
+        "pop_2023": 380200,
+        "area_km2": 12403.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.40507,
+          31.05353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kohlu",
+        "province": "Balochistan",
+        "pcode": "PK216",
+        "pop_2023": 260220,
+        "area_km2": 7728.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.87157,
+          29.64414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Lasbela",
+        "province": "Balochistan",
+        "pcode": "PK217",
+        "pop_2023": 680977,
+        "area_km2": 14057.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.31496,
+          25.77306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Lehri",
+        "province": "Balochistan",
+        "pcode": "PK218",
+        "pop_2023": null,
+        "area_km2": 3285.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.0674,
+          28.9929
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Loralai",
+        "province": "Balochistan",
+        "pcode": "PK219",
+        "pop_2023": 272432,
+        "area_km2": 3796.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.63004,
+          30.4781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Mastung",
+        "province": "Balochistan",
+        "pcode": "PK220",
+        "pop_2023": 313271,
+        "area_km2": 4712.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.73479,
+          29.74558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Musakhel",
+        "province": "Balochistan",
+        "pcode": "PK221",
+        "pop_2023": 182275,
+        "area_km2": 5900.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.87762,
+          30.89977
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Nasirabad",
+        "province": "Balochistan",
+        "pcode": "PK222",
+        "pop_2023": 563377,
+        "area_km2": 3224.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.0954,
+          28.62653
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Nushki",
+        "province": "Balochistan",
+        "pcode": "PK223",
+        "pop_2023": 207834,
+        "area_km2": 5863.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          65.72088,
+          29.44576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Panjgur",
+        "province": "Balochistan",
+        "pcode": "PK224",
+        "pop_2023": 509781,
+        "area_km2": 17582.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          64.20378,
+          26.72343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Pishin",
+        "province": "Balochistan",
+        "pcode": "PK225",
+        "pop_2023": 835482,
+        "area_km2": 6085.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.16706,
+          30.70275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Quetta",
+        "province": "Balochistan",
+        "pcode": "PK226",
+        "pop_2023": 2595492,
+        "area_km2": 3759.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.8357,
+          30.14169
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sherani",
+        "province": "Balochistan",
+        "pcode": "PK227",
+        "pop_2023": 191687,
+        "area_km2": 3050.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.79187,
+          31.67421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sibi",
+        "province": "Balochistan",
+        "pcode": "PK228",
+        "pop_2023": 224148,
+        "area_km2": 4965.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.96415,
+          29.72817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sohbatpur",
+        "province": "Balochistan",
+        "pcode": "PK229",
+        "pop_2023": 240106,
+        "area_km2": 786.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.73589,
+          28.49898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Washuk",
+        "province": "Balochistan",
+        "pcode": "PK230",
+        "pop_2023": 302623,
+        "area_km2": 39031.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          64.38096,
+          27.79219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Zhob",
+        "province": "Balochistan",
+        "pcode": "PK231",
+        "pop_2023": 355692,
+        "area_km2": 11936.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.78127,
+          31.21224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Ziarat",
+        "province": "Balochistan",
+        "pcode": "PK232",
+        "pop_2023": 189535,
+        "area_km2": 3271.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.89415,
+          30.38066
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Shaheed Sikandarabad",
+        "province": "Balochistan",
+        "pcode": "PK233",
+        "pop_2023": 278092,
+        "area_km2": 3706.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.17611,
+          28.32776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Duki",
+        "province": "Balochistan",
+        "pcode": "PK234",
+        "pop_2023": 205044,
+        "area_km2": 4336.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.97387,
+          30.18115
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Chaman",
+        "province": "Balochistan",
+        "pcode": "PK235",
+        "pop_2023": 466218,
+        "area_km2": 1635.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.5655,
+          30.85294
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Astore",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK301",
+        "pop_2023": null,
+        "area_km2": 5132.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.83517,
+          35.24702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Diamir",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK302",
+        "pop_2023": null,
+        "area_km2": 4215.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.21437,
+          35.37913
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Ghanche",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK303",
+        "pop_2023": null,
+        "area_km2": 8674.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.87171,
+          35.22162
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Ghizer",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK304",
+        "pop_2023": null,
+        "area_km2": 4323.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.91915,
+          36.37631
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Gilgit",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK305",
+        "pop_2023": null,
+        "area_km2": 4016.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.45133,
+          35.96844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Hunza",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK306",
+        "pop_2023": null,
+        "area_km2": 11419.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.05364,
+          36.5507
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Skardu",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK307",
+        "pop_2023": null,
+        "area_km2": 2119.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.57928,
+          35.25828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Nagar",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK308",
+        "pop_2023": null,
+        "area_km2": 3022.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.68739,
+          36.29825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kharmang",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK309",
+        "pop_2023": null,
+        "area_km2": 5971.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.80011,
+          34.8358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Shigar",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK310",
+        "pop_2023": null,
+        "area_km2": 8513.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.89696,
+          35.73689
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Darel",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK311",
+        "pop_2023": null,
+        "area_km2": 1650.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.82515,
+          35.69935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Tangir",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK312",
+        "pop_2023": null,
+        "area_km2": 1102.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.34705,
+          35.75028
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Gupis-Yasin",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK313",
+        "pop_2023": null,
+        "area_km2": 7726.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.13847,
+          36.28451
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Rondu",
+        "province": "Gilgit Baltistan",
+        "pcode": "PK314",
+        "pop_2023": null,
+        "area_km2": 1881.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.16207,
+          35.58704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Islamabad",
+        "province": "Islamabad",
+        "pcode": "PK401",
+        "pop_2023": 2363863,
+        "area_km2": 901.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.10164,
+          33.65082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Abbottabad",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK501",
+        "pop_2023": 1419072,
+        "area_km2": 1639.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.24181,
+          34.09508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Bajaur",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK502",
+        "pop_2023": 1287960,
+        "area_km2": 1366.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.48907,
+          34.74617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Bannu",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK503",
+        "pop_2023": 1357890,
+        "area_km2": 2027.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.61303,
+          32.98484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Batagram",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK504",
+        "pop_2023": 554133,
+        "area_km2": 1485.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.18062,
+          34.76201
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Buner",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK505",
+        "pop_2023": 1016869,
+        "area_km2": 1774.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.49998,
+          34.43076
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Charsadda",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK506",
+        "pop_2023": 1835504,
+        "area_km2": 999.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.71447,
+          34.248
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Chitral Lower",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK507",
+        "pop_2023": 320407,
+        "area_km2": 6077.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.74927,
+          35.84682
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Chitral Upper",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK508",
+        "pop_2023": 195528,
+        "area_km2": 8615.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.79455,
+          36.34505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "D. I. Khan",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK509",
+        "pop_2023": 1829811,
+        "area_km2": 9028.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.64598,
+          31.84972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Hangu",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK510",
+        "pop_2023": 528902,
+        "area_km2": 1372.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.86446,
+          33.4122
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Haripur",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK511",
+        "pop_2023": 1174783,
+        "area_km2": 1953.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.88209,
+          34.04775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Karak",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK512",
+        "pop_2023": 815878,
+        "area_km2": 2648.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.11324,
+          33.10048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Khyber",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK513",
+        "pop_2023": 1146267,
+        "area_km2": 2747.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.98318,
+          34.0286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kohat",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK514",
+        "pop_2023": 1234661,
+        "area_km2": 3438.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.53538,
+          33.41195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kohistan Lower",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK515",
+        "pop_2023": 340017,
+        "area_km2": 823.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.93196,
+          35.14939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kohistan Upper",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK516",
+        "pop_2023": 422947,
+        "area_km2": 5484.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.33144,
+          35.42236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kolai Palas Kohistan",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK517",
+        "pop_2023": 280162,
+        "area_km2": 1229.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.25563,
+          35.06736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kurram",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK518",
+        "pop_2023": 785434,
+        "area_km2": 3398.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.30741,
+          33.68994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Lakki Marwat",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK519",
+        "pop_2023": 1040856,
+        "area_km2": 3339.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.76641,
+          32.57058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Lower Dir",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK520",
+        "pop_2023": 1650183,
+        "area_km2": 1604.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.85148,
+          34.84154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Malakand",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK521",
+        "pop_2023": 826250,
+        "area_km2": 905.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.93738,
+          34.51695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Mansehra",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK522",
+        "pop_2023": 1797177,
+        "area_km2": 4032.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.47213,
+          34.69594
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Mardan",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK523",
+        "pop_2023": 2744898,
+        "area_km2": 1636.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12654,
+          34.30359
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Mohmand",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK524",
+        "pop_2023": 553933,
+        "area_km2": 2262.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.3502,
+          34.44621
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "North Waziristan",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK525",
+        "pop_2023": 693332,
+        "area_km2": 4929.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.01136,
+          32.95681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Nowshera",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK526",
+        "pop_2023": 1740705,
+        "area_km2": 1725.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.97274,
+          33.91721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Orakzai",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK527",
+        "pop_2023": 387561,
+        "area_km2": 1369.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.99844,
+          33.69532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Peshawar",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK528",
+        "pop_2023": 4758762,
+        "area_km2": 1539.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.6153,
+          33.94141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Shangla",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK529",
+        "pop_2023": 891252,
+        "area_km2": 1384.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.76654,
+          34.84683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "South Waziristan",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK530",
+        "pop_2023": 888675,
+        "area_km2": 6224.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.81224,
+          32.29187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Swabi",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK531",
+        "pop_2023": 1894600,
+        "area_km2": 1480.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.48574,
+          34.14056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Swat",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK532",
+        "pop_2023": 2687384,
+        "area_km2": 5348.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.45562,
+          35.23322
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Tank",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK533",
+        "pop_2023": 470293,
+        "area_km2": 2818.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.38285,
+          32.31876
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Tor Ghar",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK534",
+        "pop_2023": 200445,
+        "area_km2": 454.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8271,
+          34.55882
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Upper Dir",
+        "province": "Khyber Pakhtunkhwa",
+        "pcode": "PK535",
+        "pop_2023": 1083566,
+        "area_km2": 3731.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.95091,
+          35.31081
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Attock",
+        "province": "Punjab",
+        "pcode": "PK601",
+        "pop_2023": 2170423,
+        "area_km2": 6910.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.31491,
+          33.50369
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Bahawalnagar",
+        "province": "Punjab",
+        "pcode": "PK602",
+        "pop_2023": 3550342,
+        "area_km2": 8576.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.11652,
+          29.57678
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Bahawalpur",
+        "province": "Punjab",
+        "pcode": "PK603",
+        "pop_2023": 4284964,
+        "area_km2": 23966.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.83751,
+          28.8283
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Bhakkar",
+        "province": "Punjab",
+        "pcode": "PK604",
+        "pop_2023": 1957470,
+        "area_km2": 8473.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.42545,
+          31.681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Chakwal",
+        "province": "Punjab",
+        "pcode": "PK605",
+        "pop_2023": 1734854,
+        "area_km2": 6487.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.52594,
+          32.874
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Chiniot",
+        "province": "Punjab",
+        "pcode": "PK606",
+        "pop_2023": 1563024,
+        "area_km2": 2602.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.83226,
+          31.67028
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Dera Ghazi Khan",
+        "province": "Punjab",
+        "pcode": "PK607",
+        "pop_2023": 3393705,
+        "area_km2": 11765.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.38179,
+          30.47957
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Faisalabad",
+        "province": "Punjab",
+        "pcode": "PK608",
+        "pop_2023": 9075819,
+        "area_km2": 5947.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.19136,
+          31.23095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Gujranwala",
+        "province": "Punjab",
+        "pcode": "PK609",
+        "pop_2023": 5959750,
+        "area_km2": 3619.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.11761,
+          32.18856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Gujrat",
+        "province": "Punjab",
+        "pcode": "PK610",
+        "pop_2023": 3219375,
+        "area_km2": 3168.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.02759,
+          32.71791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Hafizabad",
+        "province": "Punjab",
+        "pcode": "PK611",
+        "pop_2023": 1319909,
+        "area_km2": 2277.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.49156,
+          32.05072
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Jhang",
+        "province": "Punjab",
+        "pcode": "PK612",
+        "pop_2023": 3077720,
+        "area_km2": 6345.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.23369,
+          31.1719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Jhelum",
+        "province": "Punjab",
+        "pcode": "PK613",
+        "pop_2023": 1382308,
+        "area_km2": 3568.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.22454,
+          32.83635
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kasur",
+        "province": "Punjab",
+        "pcode": "PK614",
+        "pop_2023": 4084286,
+        "area_km2": 3986.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.17054,
+          31.00359
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Khanewal",
+        "province": "Punjab",
+        "pcode": "PK615",
+        "pop_2023": 3364077,
+        "area_km2": 4355.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.01292,
+          30.31566
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Khushab",
+        "province": "Punjab",
+        "pcode": "PK616",
+        "pop_2023": 1501089,
+        "area_km2": 6599.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.14688,
+          32.12477
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Lahore",
+        "province": "Punjab",
+        "pcode": "PK617",
+        "pop_2023": 13004135,
+        "area_km2": 1729.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.32227,
+          31.48627
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Leiah",
+        "province": "Punjab",
+        "pcode": "PK618",
+        "pop_2023": 2102386,
+        "area_km2": 6412.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.29316,
+          30.99706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Lodhran",
+        "province": "Punjab",
+        "pcode": "PK619",
+        "pop_2023": 1928299,
+        "area_km2": 2666.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.72932,
+          29.67152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Mandi Bahauddin",
+        "province": "Punjab",
+        "pcode": "PK620",
+        "pop_2023": 1829486,
+        "area_km2": 2741.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.47227,
+          32.43478
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Mianwali",
+        "province": "Punjab",
+        "pcode": "PK621",
+        "pop_2023": 1798268,
+        "area_km2": 5960.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.54265,
+          32.70415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Multan",
+        "province": "Punjab",
+        "pcode": "PK622",
+        "pop_2023": 5362305,
+        "area_km2": 3648.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.4202,
+          29.92603
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Muzaffargarh",
+        "province": "Punjab",
+        "pcode": "PK623",
+        "pop_2023": 5015325,
+        "area_km2": 7688.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.13326,
+          29.89244
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Nankana Sahib",
+        "province": "Punjab",
+        "pcode": "PK624",
+        "pop_2023": 1634871,
+        "area_km2": 2194.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.66496,
+          31.43354
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Narowal",
+        "province": "Punjab",
+        "pcode": "PK625",
+        "pop_2023": 1950954,
+        "area_km2": 2376.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.98496,
+          32.20544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Okara",
+        "province": "Punjab",
+        "pcode": "PK626",
+        "pop_2023": 3515490,
+        "area_km2": 4437.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.71464,
+          30.6973
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Pakpattan",
+        "province": "Punjab",
+        "pcode": "PK627",
+        "pop_2023": 2136170,
+        "area_km2": 2884.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.23508,
+          30.28881
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Rahim Yar Khan",
+        "province": "Punjab",
+        "pcode": "PK628",
+        "pop_2023": 5564703,
+        "area_km2": 12848.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.28626,
+          28.48551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Rajanpur",
+        "province": "Punjab",
+        "pcode": "PK629",
+        "pop_2023": 2381049,
+        "area_km2": 12584.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.02157,
+          29.14679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Rawalpindi",
+        "province": "Punjab",
+        "pcode": "PK630",
+        "pop_2023": 6118911,
+        "area_km2": 5226.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.12429,
+          33.52494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sahiwal",
+        "province": "Punjab",
+        "pcode": "PK631",
+        "pop_2023": 2881811,
+        "area_km2": 3228.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.88378,
+          30.55053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sargodha",
+        "province": "Punjab",
+        "pcode": "PK632",
+        "pop_2023": 4334448,
+        "area_km2": 5845.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.75979,
+          32.06898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sheikhupura",
+        "province": "Punjab",
+        "pcode": "PK633",
+        "pop_2023": 4049418,
+        "area_km2": 3628.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.08073,
+          31.71382
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sialkot",
+        "province": "Punjab",
+        "pcode": "PK634",
+        "pop_2023": 4499394,
+        "area_km2": 3068.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.56661,
+          32.44221
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Toba Tek Singh",
+        "province": "Punjab",
+        "pcode": "PK635",
+        "pop_2023": 2511963,
+        "area_km2": 3081.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.5031,
+          30.92844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Vehari",
+        "province": "Punjab",
+        "pcode": "PK636",
+        "pop_2023": 3430421,
+        "area_km2": 4499.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.36261,
+          29.98264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Badin",
+        "province": "Sindh",
+        "pcode": "PK701",
+        "pop_2023": 1947081,
+        "area_km2": 6575.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.83838,
+          24.75216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Central Karachi",
+        "province": "Sindh",
+        "pcode": "PK702",
+        "pop_2023": 3822325,
+        "area_km2": 65.1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.05208,
+          24.948
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Dadu",
+        "province": "Sindh",
+        "pcode": "PK703",
+        "pop_2023": 1742320,
+        "area_km2": 8017.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.58602,
+          26.7672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "East Karachi",
+        "province": "Sindh",
+        "pcode": "PK704",
+        "pop_2023": 3950031,
+        "area_km2": 202.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.13001,
+          24.93192
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Ghotki",
+        "province": "Sindh",
+        "pcode": "PK705",
+        "pop_2023": 1772609,
+        "area_km2": 6366.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.67244,
+          27.86657
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Hyderabad",
+        "province": "Sindh",
+        "pcode": "PK706",
+        "pop_2023": 2432540,
+        "area_km2": 1018.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.46775,
+          25.35529
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Jacobabad",
+        "province": "Sindh",
+        "pcode": "PK707",
+        "pop_2023": 1174097,
+        "area_km2": 2691.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.42103,
+          28.1767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Jamshoro",
+        "province": "Sindh",
+        "pcode": "PK708",
+        "pop_2023": 1117308,
+        "area_km2": 11230.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.86781,
+          25.78583
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kambar Shahdad Kot",
+        "province": "Sindh",
+        "pcode": "PK709",
+        "pop_2023": 1514869,
+        "area_km2": 5597.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.68581,
+          27.64597
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Kashmore",
+        "province": "Sindh",
+        "pcode": "PK710",
+        "pop_2023": 1233957,
+        "area_km2": 2614.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.28362,
+          28.23716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Khairpur",
+        "province": "Sindh",
+        "pcode": "PK711",
+        "pop_2023": 2597535,
+        "area_km2": 16005.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.18242,
+          26.96091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Korangi Karachi",
+        "province": "Sindh",
+        "pcode": "PK712",
+        "pop_2023": 3128971,
+        "area_km2": 104.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.1459,
+          24.83273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Larkana",
+        "province": "Sindh",
+        "pcode": "PK713",
+        "pop_2023": 1784453,
+        "area_km2": 1921.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.21842,
+          27.53091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Malir Karachi",
+        "province": "Sindh",
+        "pcode": "PK714",
+        "pop_2023": 2403959,
+        "area_km2": 2726.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.29246,
+          25.12017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Matiari",
+        "province": "Sindh",
+        "pcode": "PK715",
+        "pop_2023": 849383,
+        "area_km2": 1457.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.45434,
+          25.77096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Mirpur Khas",
+        "province": "Sindh",
+        "pcode": "PK716",
+        "pop_2023": 1681386,
+        "area_km2": 3463.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.17906,
+          25.30687
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Naushahro Feroze",
+        "province": "Sindh",
+        "pcode": "PK717",
+        "pop_2023": 1777082,
+        "area_km2": 3036.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.12502,
+          26.888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sanghar",
+        "province": "Sindh",
+        "pcode": "PK718",
+        "pop_2023": 2308465,
+        "area_km2": 10158.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.3327,
+          25.97972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Shaheed Benazir Abad",
+        "province": "Sindh",
+        "pcode": "PK719",
+        "pop_2023": 1845102,
+        "area_km2": 4582.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.36337,
+          26.31122
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Shikarpur",
+        "province": "Sindh",
+        "pcode": "PK720",
+        "pop_2023": 1386330,
+        "area_km2": 2551.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.65501,
+          27.92281
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "South Karachi",
+        "province": "Sindh",
+        "pcode": "PK721",
+        "pop_2023": 2329764,
+        "area_km2": 507.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.84859,
+          24.893
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sujawal",
+        "province": "Sindh",
+        "pcode": "PK722",
+        "pop_2023": 839292,
+        "area_km2": 8687.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.11297,
+          24.34161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Sukkur",
+        "province": "Sindh",
+        "pcode": "PK723",
+        "pop_2023": 1639897,
+        "area_km2": 5178.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.23004,
+          27.54548
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Tando Allahyar",
+        "province": "Sindh",
+        "pcode": "PK724",
+        "pop_2023": 922012,
+        "area_km2": 1544.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.76788,
+          25.48025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Tando Muhammad Khan",
+        "province": "Sindh",
+        "pcode": "PK725",
+        "pop_2023": 726119,
+        "area_km2": 1676.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.55184,
+          25.02468
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Tharparkar",
+        "province": "Sindh",
+        "pcode": "PK726",
+        "pop_2023": 1778407,
+        "area_km2": 19682.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.0876,
+          24.94403
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Thatta",
+        "province": "Sindh",
+        "pcode": "PK727",
+        "pop_2023": 1083191,
+        "area_km2": 7630.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.78562,
+          24.69416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "Umer Kot",
+        "province": "Sindh",
+        "pcode": "PK728",
+        "pop_2023": 1159831,
+        "area_km2": 5489.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.75451,
+          25.3327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district": "West Karachi",
+        "province": "Sindh",
+        "pcode": "PK729",
+        "pop_2023": 4747831,
+        "area_km2": 241.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.02454,
+          24.98717
+        ]
+      }
+    }
+  ]
+}
