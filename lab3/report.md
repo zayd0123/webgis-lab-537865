@@ -665,7 +665,127 @@ unchanged.
 
 ---
 
-## 11. Answers to the questions
+## 11. The four optional extensions
+
+All four are done. They are independent of each other, so each is verified on
+its own by `lab3/check_extensions.mjs` — **20 checks, all passing** — and nothing
+in them changes what Parts 3 to 9 do.
+
+### 1. Clustered markers, on their own overlay
+
+`Leaflet.markercluster` 1.5.3, loaded from unpkg, over the same
+`district_points.geojson` the circles use. The group is registered as
+**Districts, clustered** and starts off, so the dashboard opens exactly as the
+core lab leaves it.
+
+![The 160 points as clustered markers](Report/checkpoint11a_clusters.png)
+
+*At zoom 6 the 160 points collapse into **31 clusters** carrying 149 of them,
+with 11 drawn individually — markers far enough from any other not to need
+clustering. Clicking a cluster opens it; zooming to 11 breaks them up entirely
+(0 clusters, 9 individual markers in view). The plugin's default green is louder
+than anything else on the page, so the cluster styling is toned to the teal used
+for the NUST overlay.*
+
+The overlay is a fourth way of showing the same 160 districts, and it answers a
+different question from the circles: the circles say *how many people*, the
+clusters say *where the districts are*, which at national zoom is otherwise lost
+in the crowding.
+
+### 2. Density labels above zoom 8
+
+Above zoom 8 each district carries its density as a permanent label, added and
+removed by the existing `zoomend` handler.
+
+![Density labels at zoom 9](Report/checkpoint11b_density_labels.png)
+
+*Zoom 9 over Lahore. Every district labels its density — 7,517 / km² for Lahore
+itself, 1,648, 1,526, 1,116 and so on — and the labels sit inside their own
+boundaries because the point-on-surface tool put the label anchor there.*
+
+Two things needed care:
+
+- **A layer can only carry one tooltip.** `bindTooltip` replaces rather than
+  adds, so the permanent label and the sticky name tooltip cannot coexist. Above
+  the threshold the tooltip *becomes* the label; going back below it restores the
+  hover name. Checked both ways.
+- **`zoomend`, not `zoom`.** `zoom` fires throughout the animation, which would
+  rebind 160 tooltips on every frame of a pinch; `zoomend` fires once when the
+  zoom settles.
+
+The labels are unboxed with a white halo text-shadow rather than Leaflet's
+default white box: 160 bordered boxes would hide the shading they describe.
+
+### 3. The view is remembered
+
+`moveend` writes the centre, zoom and a timestamp to `localStorage`; the page
+restores it on load. A view older than 12 hours is ignored, so a position
+remembered days ago cannot leave the reader staring at somewhere unrelated.
+`localStorage` is wrapped in `try`/`catch` — private browsing makes it throw, and
+losing a remembered view is not worth breaking the map over.
+
+**This one had a real bug, and it is worth recording because it is invisible.**
+Restoring *after* the opening `fitBounds()` does not work. A simple "am I
+restoring?" flag is not enough, because Leaflet fires `moveend` from a
+`requestAnimationFrame`, and the container re-fits once its first layout settles.
+Traced on the page:
+
+```
+  7 ms  draw('all')
+ 37 ms  setView [25, 68]        <- the restore lands
+ 69 ms  moveend z8 @25.000
+350 ms  moveend z6 @30.623      <- the container's own re-fit, 280 ms later
+```
+
+The restore was being undone a quarter of a second after it happened. The fix is
+not a longer delay but ordering: `draw()` no longer fits the view itself, and
+`loadData()` fits **only when there is nothing to restore**:
+
+```js
+const remembered = storedView();
+draw('all');
+if (remembered) { restoreView(remembered); } else { fitView(); }
+```
+
+That removes the race rather than trying to time around it. Programmatic moves
+are also silenced from the save handler, so the opening fit is never written to
+storage as though the reader had panned there.
+
+### 4. Quantile breaks, as a toggle
+
+The **Shading** drop-down switches between Part 4's fixed breaks and quantiles
+computed from the data. Quantiles are worked out at load time from the 135
+districts that have a census value, by interpolating between neighbouring values
+in the sorted list.
+
+| | Fixed breaks | Quantiles |
+|---|---|---|
+| Breaks (people per km²) | 50 / 150 / 400 / 1,000 | **74 / 275 / 456 / 869** |
+| Districts per class | 20 / 18 / 34 / 41 / 22 | **27 / 27 / 27 / 27 / 27** |
+
+![Quantile shading, and a legend built from the same numbers](Report/checkpoint11c_quantile_legend.png)
+
+*The quantile classification. The legend is rebuilt from the breaks in force and
+says which classification is showing, because equal-count classes and fixed
+classes look identical on the page and mean different things.*
+
+**Why it is a toggle rather than a replacement.** The fixed breaks are the
+classification Part 4's analysis is written around, and answer 1 depends on the
+contrast between Chagai and Central Karachi that the fixed scheme makes visible.
+Replacing them would have made the extension impossible to compare against the
+core lab.
+Keeping both means the difference is visible: the fixed scheme says something
+about density in the abstract and puts 41 of 135 districts in one class, while
+quantiles spend the five colours where the districts actually are.
+
+The trade is real and is stated in the code: equal counts make the classes
+comparable *to each other* but not to any other map, and a quantile map of a
+different country would use the same five shades for completely different
+densities. The legend therefore names the scheme it is describing.
+
+---
+
+## 12. Answers to the questions
 
 ### 1. Lab 2 shaded districts by population. Name one large, thinly populated district and one small, crowded one, and explain how each would mislead on the Lab 2 map.
 
@@ -828,7 +948,9 @@ side by side — the measurements are in §6.
 | `lab3/sibi_centroid_map_view.qgz` | QGIS project, canvas zoomed to Sibi |
 | `lab3/check_point_layer.py` | prints the Sibi evidence |
 | `lab3/make_sibi_figure.py` | the matplotlib version of the centroid figure |
-| `lab3/check_dashboard.mjs` | 43 automated checks in headless Chrome |
+| `lab3/check_dashboard.mjs` | 44 automated checks in headless Chrome |
+| `lab3/check_extensions.mjs` | 20 automated checks for the four extensions |
+| `lab3/capture_extensions.mjs` | captures the extension figures |
 | `lab3/measure_renderers.mjs` | the Part 9 SVG/canvas measurements |
 | `lab3/capture_screenshots.mjs` | captures the map figures in this report |
 | `lab3/capture_devtools_network.mjs` | captures Checkpoint 3 from Chrome's Network tab |

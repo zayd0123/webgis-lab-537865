@@ -122,13 +122,34 @@ function densityOf(p) {
 
 // Missing is not the same as small: with an explicit branch for null, the 25
 // districts with no census value are grey rather than pale blue.
+const COLOURS = ['#deebf7', '#9ecae1', '#4292c6', '#2171b5', '#08306b'];
+const GREY = '#c9cfd1';
+
+// Extension 4: the same five colours, but the breaks are computed from the
+// data rather than fixed. See quantileBreaks() below.
+// Extension 3 declares these up here because fitView() runs during load and
+// assigns to silentUntil; leaving them next to saveView() would be a temporal
+// dead zone error, not a style question.
+const VIEW_KEY = 'lab3.view';
+const SILENT_MS = 1200;
+let silentUntil = 0;
+
+let scheme = 'fixed';            // 'fixed' | 'quantile'
+const FIXED_BREAKS = [50, 150, 400, 1000];   // Part 4's manual classification
+let breaks = FIXED_BREAKS.slice();
+let currentProvince = 'all';
+
+function classFor(density) {
+  if (density === null) return -1;
+  for (let i = 0; i < breaks.length; i++) {
+    if (density <= breaks[i]) return i;
+  }
+  return breaks.length;
+}
+
 function colourFor(density) {
-  if (density === null) return '#c9cfd1';
-  if (density > 1000) return '#08306b';
-  if (density >  400) return '#2171b5';
-  if (density >  150) return '#4292c6';
-  if (density >   50) return '#9ecae1';
-  return '#deebf7';
+  const k = classFor(density);
+  return k < 0 ? GREY : COLOURS[k];
 }
 
 function styleFor(feature) {
@@ -138,6 +159,41 @@ function styleFor(feature) {
     fillColor: colourFor(densityOf(feature.properties)),
     fillOpacity: 0.8
   };
+}
+
+// -----------------------------------------------------------------------
+// Extension 4 - quantile breaks, computed from the data
+// -----------------------------------------------------------------------
+// The fixed breaks of Part 4 put 20 / 18 / 34 / 41 / 22 districts in the five
+// classes: they say something about density in the abstract, but nothing about
+// this particular set of districts, and 41 of 135 share one colour. Quantiles
+// are worked out from the values themselves, so each class holds as close to
+// the same number of districts as the data allows, and the map spends its five
+// colours where the districts actually are.
+//
+// The trade is real and worth stating: equal counts make the classes comparable
+// to each other but not to any other map, and a quantile map of a different
+// country would use the same five shades for completely different densities.
+function quantileBreaks(values, classes) {
+  const sorted = values.slice().sort((a, b) => a - b);
+  const out = [];
+  for (let i = 1; i < classes; i++) {
+    const pos = (i / classes) * (sorted.length - 1);
+    const lo = Math.floor(pos);
+    const hi = Math.ceil(pos);
+    // interpolate between the two neighbouring values
+    out.push(sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo));
+  }
+  return out;
+}
+
+function computeBreaks() {
+  const values = allDistricts.features
+    .map(f => densityOf(f.properties))
+    .filter(v => v !== null);
+  // keep the four breaks distinct: 135 values with ties can otherwise repeat
+  const q = quantileBreaks(values, COLOURS.length);
+  return q.map(v => Math.round(v));
 }
 
 // -----------------------------------------------------------------------
@@ -214,6 +270,39 @@ function bindDistrict(feature, layer) {
 }
 
 // -----------------------------------------------------------------------
+// Extension 2 - the density as a permanent label, above zoom 8
+// -----------------------------------------------------------------------
+// The hover tooltip and a permanent label cannot both be attached: Leaflet
+// keeps one tooltip per layer, and a second bindTooltip replaces the first. So
+// above the threshold the one tooltip becomes the label, and going back below
+// it restores the hover tooltip.
+//
+// zoomend rather than zoom: zoom end fires once when the zoom settles, while
+// zoom fires throughout the animation, which would rebind 160 tooltips on every
+// frame of it.
+const LABEL_ZOOM = 8;
+
+function syncDensityLabels() {
+  const wanted = map.getZoom() >= LABEL_ZOOM;
+  const target = scheme === 'quantile' ? quantileDistricts : districts;
+  if (!target) return;
+
+  target.eachLayer(function (layer) {
+    const hasLabel = !!layer.getTooltip() && layer.getTooltip().options.permanent;
+    if (wanted && !hasLabel) {
+      const d = densityOf(layer.feature.properties);
+      layer.unbindTooltip();
+      layer.bindTooltip(
+        d === null ? 'no census data' : Math.round(d).toLocaleString() + ' / km²',
+        { permanent: true, direction: 'center', className: 'density-label' });
+    } else if (!wanted && hasLabel) {
+      layer.unbindTooltip();
+      layer.bindTooltip(layer.feature.properties.district, { sticky: true });
+    }
+  });
+}
+
+// -----------------------------------------------------------------------
 // Part 6 - population as proportional circles, in a pane of their own
 // -----------------------------------------------------------------------
 // Polygons and circle markers are both vector paths, so by default both go
@@ -268,6 +357,25 @@ layerControl.addOverlay(districtGroup, 'Population density');
 const circleGroup = L.featureGroup().addTo(map);
 layerControl.addOverlay(circleGroup, 'Population');
 
+// Extension 4 - the same districts under quantile breaks. Off the map by
+// default; the Shading drop-down chooses which of the two shows, and the layer
+// control can switch either one off entirely.
+const quantileGroup = L.featureGroup();
+layerControl.addOverlay(quantileGroup, 'Density, quantile breaks');
+
+// Extension 1 - the 160 points as clustered markers, in an overlay of their
+// own. markerClusterGroup is a layer group itself, so it can go where any
+// featureGroup goes. It is added to the map only when ticked, to keep the
+// dashboard's initial draw as close to the core lab as possible.
+// Not added to the map here: the layer control ticks a layer only when it is
+// already on the map, so starting it off keeps the initial view to the core lab.
+const clusterGroup = L.markerClusterGroup({
+  showCoverageOnHover: false,
+  maxClusterRadius: 50,
+  spiderfyDistanceMultiplier: 1.6
+});
+layerControl.addOverlay(clusterGroup, 'Districts, clustered');
+
 // Part 6 - metres on the ground against pixels on the screen
 const nust = [33.6423, 72.9906];
 const nustGroup = L.featureGroup([
@@ -281,9 +389,22 @@ layerControl.addOverlay(nustGroup, 'NUST, 25 km');
 // -----------------------------------------------------------------------
 // Part 4 - draw the layers, keeping only the chosen province
 // -----------------------------------------------------------------------
+// Fitting the view is the caller's job rather than draw()'s, because the first
+// draw must not fit when there is a stored view to restore - see extension 3.
+// A fit is not the reader moving, so it is silenced: otherwise the initial
+// fitBounds would be written to localStorage as though they had panned there.
+function fitView() {
+  if (!districts || districts.getLayers().length === 0) return;   // no bounds
+  silentUntil = Date.now() + SILENT_MS;
+  map.fitBounds(districts.getBounds());
+}
+
+// Declared up here because computeBreaks() reads allDistricts, and extension 4
+// computes its breaks at load time rather than per draw.
 let allDistricts = null;
 let allPoints = null;
 let districts = null;   // the current L.geoJSON layer, kept for resetStyle
+let quantileDistricts = null;   // the same, for the quantile shading
 
 function draw(province) {
   const t0 = performance.now();   // Part 9: timing
@@ -297,27 +418,61 @@ function draw(province) {
 
   districtGroup.clearLayers();
   circleGroup.clearLayers();
+  quantileGroup.clearLayers();
+  clusterGroup.clearLayers();
 
+  // Extension 4: the quantile shading is the same geometry with the same
+  // styleFor(), which reads the breaks that are currently in force. It only
+  // differs in which breaks those are.
+  quantileDistricts = L.geoJSON(allDistricts, {
+    filter: keep,
+    style: styleFor,
+    onEachFeature: bindDistrict
+  });
+  quantileGroup.addLayer(quantileDistricts);
+
+  // The fixed-break layer is the one the info panel and resetStyle use, so it
+  // is built first and kept in `districts` even when quantiles are showing.
   districts = L.geoJSON(allDistricts, {
     filter: keep,
     style: styleFor,
     onEachFeature: bindDistrict
   });
   districtGroup.addLayer(districts);
+  if (scheme === 'quantile') {
+    // only one of the two is on the map at a time; the layer control holds both
+    if (map.hasLayer(districtGroup)) map.removeLayer(districtGroup);
+    if (!map.hasLayer(quantileGroup)) quantileGroup.addTo(map);
+  } else {
+    if (map.hasLayer(quantileGroup)) map.removeLayer(quantileGroup);
+    if (!map.hasLayer(districtGroup)) districtGroup.addTo(map);
+  }
 
   circleGroup.addLayer(L.geoJSON(allPoints, {
     filter: function (f) { return keep(f) && hasPopulation(f); },
     pointToLayer: circleFor
   }));
 
+  // Extension 1: the same districts as clustered markers. One marker per
+  // point, so the layer is only readable once the cluster has been opened.
+  clusterGroup.addLayer(L.geoJSON(allPoints, {
+    filter: keep,
+    pointToLayer: function (feature, latlng) {
+      return L.marker(latlng).bindPopup(
+        '<strong>' + feature.properties.district + '</strong><br>' +
+        feature.properties.province + '<br>' +
+        'Population: ' + show(feature.properties.pop_2023) + '<br>' +
+        'Area: ' + show(feature.properties.area_km2) + ' km<sup>2</sup>'
+      );
+    }
+  }));
+
   const n = districts.getLayers().length;
-  // Skipped when the selection is empty: an empty layer has no bounds and
-  // Leaflet throws "Bounds are not valid".
-  if (n > 0) {
-    map.fitBounds(districts.getBounds());
-  }
   document.getElementById('count').textContent = n + ' districts';
   reportEmptyProvince(province, n);
+
+  // Extension 2: the labels belong to whichever district layer is showing.
+  syncDensityLabels();
 
   // Part 9: how long did that take? Median of five reloads goes in the report.
   console.log('draw(' + province + '): ' + n + ' districts in ' +
@@ -345,7 +500,23 @@ function fillProvinceList() {
 
 document.getElementById('province')
   .addEventListener('change', function (event) {
-    draw(event.target.value);
+    currentProvince = event.target.value;
+    draw(currentProvince);
+  });
+
+// -----------------------------------------------------------------------
+// Extension 4 - switching the classification
+// -----------------------------------------------------------------------
+// Changing the scheme only changes the breaks, so the layer is redrawn and the
+// legend rebuilt from the same numbers the map is using.
+document.getElementById('scheme')
+  .addEventListener('change', function (event) {
+    scheme = event.target.value;
+    breaks = scheme === 'quantile' ? computeBreaks() : FIXED_BREAKS;
+    console.log('shading: ' + scheme + ', breaks ' + breaks.join(' / '));
+    draw(currentProvince);
+    fitView();
+    rebuildLegend();
   });
 
 // Part 8 asks whether the dashboard should tell the user when a layer has
@@ -393,25 +564,118 @@ document.getElementById('coords')
 // during the animation.
 map.on('zoomend', function () {
   info.update();
+  // Extension 2: the density labels appear and disappear with the zoom.
+  syncDensityLabels();
 });
+
+// -----------------------------------------------------------------------
+// Extension 3 - remember where the reader was
+// -----------------------------------------------------------------------
+// moveend fires when a pan or a zoom settles, which is the moment worth saving.
+//
+// It also fires for the moves this page makes on its own, and getting that
+// wrong is easy: a simple "am I restoring?" flag is not enough, because Leaflet
+// fires moveend from a requestAnimationFrame. The fitBounds() in the first
+// draw() therefore lands *after* restoreView() has
+// already put the reader back where they were, and overwrites it with the
+// default view - so the restored position survives only until the next reload,
+// which stores the default instead. Measured, not guessed: the stored value
+// came back as the fitted view every time.
+//
+// The fix is a window rather than a flag. Automatic moves are made silent for a
+// short time, and anything inside that window is neither saved nor treated as
+// the reader having moved.
+function savingIsSilent() {
+  return Date.now() < silentUntil;
+}
+
+function saveView() {
+  if (savingIsSilent()) return;
+  try {
+    window.localStorage.setItem(VIEW_KEY, JSON.stringify({
+      lat: map.getCenter().lat,
+      lng: map.getCenter().lng,
+      zoom: map.getZoom(),
+      at: Date.now()
+    }));
+  } catch (err) {
+    // Private browsing and some hardened settings make localStorage throw.
+    // Losing the remembered view is not worth breaking the map over.
+    console.log('could not save the view:', err.message);
+  }
+}
+
+function storedView() {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(VIEW_KEY) || 'null');
+    if (!saved || typeof saved.lat !== 'number' || typeof saved.zoom !== 'number') {
+      return null;
+    }
+    // A remembered position from days ago is more confusing than helpful.
+    if (Date.now() - (saved.at || 0) > 12 * 60 * 60 * 1000) return null;
+    return saved;
+  } catch (err) {
+    return null;
+  }
+}
+
+function restoreView(view) {
+  const saved = view || storedView();
+  if (!saved) return false;
+
+  silentUntil = Date.now() + SILENT_MS;
+  map.setView([saved.lat, saved.lng], saved.zoom, { animate: false });
+  console.log('restored the saved view: ' +
+              saved.lat.toFixed(4) + ', ' + saved.lng.toFixed(4) +
+              ' at zoom ' + saved.zoom);
+  return true;
+}
+
+map.on('moveend', saveView);
 
 // -----------------------------------------------------------------------
 // Parts 4 and 6 - the legend
 // -----------------------------------------------------------------------
 const legend = L.control({ position: 'bottomright' });
 
+function legendLabels() {
+  // Extension 4: the labels are built from the breaks in force, so the legend
+  // cannot describe a classification the map is not using.
+  const fmt = v => Math.round(v).toLocaleString();
+  const out = ['under ' + fmt(breaks[0])];
+  for (let i = 1; i < breaks.length; i++) {
+    out.push(fmt(breaks[i - 1]) + ' to ' + fmt(breaks[i]));
+  }
+  out.push('over ' + fmt(breaks[breaks.length - 1]));
+  return out;
+}
+
 legend.onAdd = function () {
   const div = L.DomUtil.create('div', 'legend');
-  const breaks = [0, 50, 150, 400, 1000];
-  const labels = ['under 50', '50 to 150', '150 to 400', '400 to 1,000', 'over 1,000'];
+  legend._div = div;
+  legend.draw();
+  // Part 7 step 2: remove this line and clicking the legend also fires the
+  // map's click handler, opening a coordinate popup on top of the legend.
+  L.DomEvent.disableClickPropagation(div);
+  return div;
+};
 
-  div.innerHTML = '<strong>People per km<sup>2</sup></strong><br>';
-  for (let i = 0; i < breaks.length; i++) {
+legend.draw = function () {
+  const div = legend._div;
+  if (!div) return;
+  const labels = legendLabels();
+
+  // Extension 4: say which classification this is, because equal-count classes
+  // and fixed classes look identical on the page and mean different things.
+  div.innerHTML = '<strong>People per km<sup>2</sup></strong><br>' +
+    '<span class="muted">' +
+    (scheme === 'quantile' ? 'quantile breaks, equal counts' : 'fixed breaks') +
+    '</span><br>';
+  for (let i = 0; i < labels.length; i++) {
     div.innerHTML +=
-      '<i style="background:' + colourFor(breaks[i] + 1) + '"></i> ' +
-      labels[i] + '<br>';
+      '<i style="background:' + COLOURS[i] + '"></i> ' + labels[i] + '<br>';
   }
-  div.innerHTML += '<i style="background:' + colourFor(null) + '"></i> no census data';
+  div.innerHTML += '<i style="background:' + GREY + '"></i> no census data';
 
   // Part 6: three reference circles, drawn with the same radiusFor() the map
   // itself uses, so the legend cannot disagree with the symbols. They sit
@@ -433,12 +697,11 @@ legend.onAdd = function () {
   }
   svg += '</svg>';
   div.innerHTML += '<div class="circles"><strong>Population</strong>' + svg + '</div>';
-
-  // Part 7 step 2: remove this line and clicking the legend also fires the
-  // map's click handler, opening a coordinate popup on top of the legend.
-  L.DomEvent.disableClickPropagation(div);
-  return div;
 };
+
+function rebuildLegend() {
+  legend.draw();
+}
 
 legend.addTo(map);
 
@@ -468,7 +731,32 @@ async function loadData() {
   }
 
   fillProvinceList();
+
+  // Extension 4: the quantile breaks can only be computed once the data is in.
+  breaks = scheme === 'quantile' ? computeBreaks() : FIXED_BREAKS;
+
+  // Extension 3 decides the opening view, and the order matters in a way that
+  // is not obvious. Restoring *after* a fitBounds does not work: Leaflet
+  // re-fits once the container finishes its first layout, a few hundred
+  // milliseconds in, and that later fit wins over the restored view. Traced on
+  // the page - fitBounds at 35 ms, the restore at 35 ms, the container's own
+  // moveend at 350 ms back at the fitted extent.
+  //
+  // So the page fits only when there is nothing to restore. Reading the stored
+  // view before the draw costs one localStorage read and removes the race
+  // rather than trying to time around it.
+  const remembered = storedView();
   draw('all');
+  if (remembered) {
+    restoreView(remembered);
+  } else {
+    fitView();
+  }
+
+  // Expose the breaks so the checker can compare the map against the data it
+  // says it is describing.
+  window.getBreaks = () => breaks.slice();
+  window.getScheme = () => scheme;
 }
 
 // Declared on window so the DevTools Console can reach them while the page is

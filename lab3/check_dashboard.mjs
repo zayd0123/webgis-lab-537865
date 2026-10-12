@@ -157,7 +157,15 @@ try {
     [...document.querySelectorAll('.leaflet-control-layers-overlays label')]
       .map(l => l.textContent.trim()))`);
   const ov = JSON.parse(overlays);
-  check('three overlays (density, population, NUST)', ov.length === 3, ov.join(' | '));
+  // The core lab asks for three; the four optional extensions add the quantile
+  // shading and the clustered points, so five is the correct count for this
+  // build. The names are asserted rather than only the number, so an overlay
+  // going missing is still caught.
+  const wanted = ['Population density', 'Population', 'NUST, 25 km',
+                  'Density, quantile breaks', 'Districts, clustered'];
+  check('all five overlays are in the control, core three included',
+    wanted.every((w) => ov.includes(w)) && ov.length === wanted.length,
+    ov.join(' | '));
 
   const attribution = await cdp.eval(`document.querySelector('.leaflet-control-attribution').textContent`);
   check('Carto/OSM attribution shown for the default basemap',
@@ -337,6 +345,30 @@ try {
   })`);
   check('Punjab redraws cleanly (no stale layers)', JSON.parse(pj).districts === 36,
     JSON.parse(pj).districts + ' districts');
+
+  const extToggle = await cdp.eval(`(() => {
+    const boxes = [...document.querySelectorAll('.leaflet-control-layers-overlays input')];
+    const labels = [...document.querySelectorAll('.leaflet-control-layers-overlays label')]
+      .map(l => l.textContent.trim());
+    const idx = (name) => labels.findIndex(l => l.includes(name));
+    const out = {};
+    for (const name of ['Density, quantile breaks', 'Districts, clustered']) {
+      const i = idx(name);
+      if (i < 0) { out[name] = 'missing'; continue; }
+      boxes[i].click();
+      const on = name.includes('cluster') ? map.hasLayer(clusterGroup) : map.hasLayer(quantileGroup);
+      boxes[i].click();
+      const off = name.includes('cluster') ? map.hasLayer(clusterGroup) : map.hasLayer(quantileGroup);
+      out[name] = { on, off };
+    }
+    return JSON.stringify(out);
+  })()`);
+  check('the two extension overlays switch on and off',
+    JSON.parse(extToggle)['Density, quantile breaks'].on === true &&
+    JSON.parse(extToggle)['Density, quantile breaks'].off === false &&
+    JSON.parse(extToggle)['Districts, clustered'].on === true &&
+    JSON.parse(extToggle)['Districts, clustered'].off === false,
+    extToggle);
 
   const toggleOverlay = await cdp.eval(`(() => {
     const cb = [...document.querySelectorAll('.leaflet-control-layers-overlays input')][0];
