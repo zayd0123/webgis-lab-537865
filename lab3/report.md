@@ -135,11 +135,21 @@ so Sibi is not a marginal case — it is the only one.
 
 **Checkpoint 2 — QGIS, both points on Sibi**
 
-![Sibi: centroid against Point on Surface, exported from QGIS](Report/checkpoint2_sibi_qgis.png)
+![The QGIS application with both point layers on Sibi](Report/checkpoint2_sibi_qgis_application.png)
 
-*Exported from QGIS 4.2.3. Left: the close-up, with the red square (Centroids)
-sitting in Harnai across the boundary and the blue dot (Point on Surface) inside
-Sibi. Right: the whole district, where the cause is visible — the long arm
+*The QGIS application itself. The Layers panel lists the three layers with
+**Centroids** (red square) and **Point on Surface** (blue dot) ticked above the
+district boundaries, and the canvas is framed on the two points at 1:299,223:
+the red square sits in Harnai on the far side of the boundary, the blue dot
+inside Sibi. Captured from the running application by
+`lab3/capture_qgis_app.sh`, which opens `sibi_centroid_map_view.qgz` — that
+project carries the styles, the labels and the canvas extent, so it opens
+looking like this with nothing to set up by hand.*
+
+![The same comparison exported from a QGIS print layout](Report/checkpoint2_sibi_qgis.png)
+
+*The same two layers through a QGIS print layout: the close-up on the left, and
+on the right the whole district, where the cause is visible — the long arm
 reaching north-east pulls the centre of mass south-west into the notch. The
 scale bar reads 10 km.*
 
@@ -746,8 +756,11 @@ side by side — the measurements are in §6.
 | `lab3/data/district_points.geojson` | 160 district points, from QGIS `native:pointonsurface` |
 | `lab3/data/qgis_centroids.geojson`, `qgis_point_on_surface.geojson` | the two QGIS tools' own output |
 | `lab3/make_point_layer_qgis.py` | rebuilds the point layer in QGIS |
-| `lab3/qgis_part2.py` | runs both QGIS tools and exports the Checkpoint 2 figure |
-| `lab3/sibi_centroid_comparison.qgz` | the QGIS project for the comparison |
+| `lab3/qgis_part2.py` | runs both QGIS tools and exports the print-layout figure |
+| `lab3/qgis_project_setup.py` | writes the two QGIS projects |
+| `lab3/capture_qgis_app.sh` | captures Checkpoint 2 from the QGIS application |
+| `lab3/sibi_centroid_comparison.qgz` | QGIS project, print layout |
+| `lab3/sibi_centroid_map_view.qgz` | QGIS project, canvas zoomed to Sibi |
 | `lab3/check_point_layer.py` | prints the Sibi evidence |
 | `lab3/make_sibi_figure.py` | the matplotlib version of the centroid figure |
 | `lab3/check_dashboard.mjs` | 43 automated checks in headless Chrome |
