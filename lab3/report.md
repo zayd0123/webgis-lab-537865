@@ -212,7 +212,7 @@ the control is kept in the variable `layerControl`.
 ![The dashboard over the Esri satellite basemap](Report/checkpoint3_esri_satellite_basemap.png)
 
 *The Esri World Imagery basemap, selected in the layer control. The browser
-requested tiles such as:*
+requested tiles such as*
 
 ```
 https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/6/26/44
@@ -229,11 +229,28 @@ Lahore (column 45) *increases* the column. Row tracks latitude, column tracks
 longitude. Leaflet substitutes whatever placeholders the template contains, in
 the order they appear, which is why the provider's string has to be copied
 exactly — swapping the two gives a satellite view of the wrong place rather than
-an error.
+an error. Verified two ways: computed from the Web Mercator projection for seven
+Pakistani cities, and by reading the requests Chrome actually made, below.
 
-> **REPLACE THIS BLOCK.** The Network tab screenshot showing an Esri tile
-> request with its full URL visible, as the checkpoint asks. DevTools ▸ Network
-> ▸ filter `arcgisonline` ▸ switch to **Satellite (Esri)** in the layer control.
+![Chrome's Network tab, filtered to arcgisonline, with an Esri tile request selected](Report/checkpoint3_devtools_network_esri_tile.png)
+
+*Chrome's own Network tab, not a mock-up: the dashboard is on the **Satellite
+(Esri)** basemap, the panel is filtered to `arcgisonline`, and a tile request is
+selected so that **Request URL** spells the whole address out underneath. The
+screenshot is taken by `lab3/capture_devtools_network.mjs`, which opens the
+panel with `Target.openDevTools {panelId: 'network'}`, sets the filter, selects
+the row for a known tile, and captures the Chrome window with
+`screencapture -l`.*
+
+Reading it: the request is
+
+```
+https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/6/25/44
+```
+
+and the last three path segments are `6 / 25 / 44`. Checked against the
+geography, that tile covers northern Pakistan at zoom 6 — which is row 25,
+column 44.
 
 ---
 
@@ -291,8 +308,13 @@ showing both the density classes and the reference circles.*
 
 **Checkpoint 1 — the project folder**
 
-> **REPLACE THIS BLOCK.** VS Code showing `lab3/` with `index.html`,
-> `style.css`, `app.js` and `data/districts.geojson`.
+![VS Code showing the lab3 folder](Report/checkpoint1_vscode_project_folder.png)
+
+*VS Code with `lab3` open: `index.html`, `style.css` and `app.js` in the folder
+root, `data/districts.geojson` and the point layer inside `data`, and
+`index.html` open in the editor. Captured from the real application by
+`lab3/capture_vscode_folder.sh`, which opens the folder with the `code` CLI and
+captures the window with `screencapture -l`.*
 
 ---
 
@@ -730,7 +752,9 @@ side by side — the measurements are in §6.
 | `lab3/make_sibi_figure.py` | the matplotlib version of the centroid figure |
 | `lab3/check_dashboard.mjs` | 43 automated checks in headless Chrome |
 | `lab3/measure_renderers.mjs` | the Part 9 SVG/canvas measurements |
-| `lab3/capture_screenshots.mjs` | captures the figures in this report |
+| `lab3/capture_screenshots.mjs` | captures the map figures in this report |
+| `lab3/capture_devtools_network.mjs` | captures Checkpoint 3 from Chrome's Network tab |
+| `lab3/capture_vscode_folder.sh` | captures Checkpoint 1 from VS Code |
 | `lab3/QGIS.md` | the Part 2 QGIS work, the GUI route, and the QGIS 4 findings |
 | `lab3/Report/` | the figures |
 
