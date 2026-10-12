@@ -17,51 +17,77 @@ National University of Sciences and Technology, Islamabad
 
 ---
 
-## 0. One thing the lab text cannot know: the Carto basemap now needs a key
+## 0. The Carto basemap now needs a key — obtained, and working
 
 Part 3 specifies Carto Positron as the default basemap, and the `{y}/{x}`
 distinction in the Esri template as the thing to read carefully. The Esri
-template is fine. **Positron is not.**
+template is fine. **Positron needed work.**
 
 Since the handout was written, Carto has put its basemaps behind an API key.
-`https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png` now returns a
+`https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png` returned a
 256 × 256 placeholder tile reading **"API KEY REQUIRED — carto.com/basemaps/apikey"**.
-It is a `200 OK`, not an error: there is nothing in the console, and the tile
-even carries `access-control-allow-origin: *`, so nothing about the request
-looks wrong. The map simply draws that watermark where the basemap should be.
+It is a `200 OK`, not an error: nothing appears in the console, and the tile even
+carries `access-control-allow-origin: *`, so nothing about the request looks
+wrong. The map simply draws that watermark where the basemap should be.
 
-Carto's own documentation now states that basemaps require a key, and other
-projects have hit the same wall. Verified on 12 October 2026:
+Carto's documentation states that basemaps require a key. Measured on
+12 October 2026:
 
 | Basemap | Endpoint | Result |
 |---|---|---|
-| Carto Positron | `{s}.basemaps.cartocdn.com/light_all/...` | 200, 2,049-byte **API KEY REQUIRED** tile |
+| Carto Positron, no key | `{s}.basemaps.cartocdn.com/light_all/...` | 200, 2,049-byte **API KEY REQUIRED** tile |
 | Carto, no subdomain | `basemaps.cartocdn.com/light_all/...` | same placeholder |
 | Carto Voyager | `.../rastertiles/voyager/...` | same placeholder |
 | Stadia Alidade Smooth | `tiles.stadiamaps.com/...` | **401** |
 | OpenStreetMap | `tile.openstreetmap.org/{z}/{x}/{y}.png` | 200, real tile |
 | Esri World Imagery | `server.arcgisonline.com/.../tile/{z}/{y}/{x}` | 200, real tile |
 
-![The Carto Positron basemap as it now returns tiles](Report/checkpoint3b_carto_positron_api_key_required.png)
+![The Carto Positron basemap as it returned tiles before the key was added](Report/checkpoint3b_carto_positron_api_key_required.png)
 
-*The page unmodified, with the default basemap Carto Positron. Every tile is
-the "API KEY REQUIRED" placeholder.*
+*The page before the fix, with the default basemap Carto Positron. Every tile is
+the "API KEY REQUIRED" placeholder. Kept as the record of what the problem
+looked like.*
 
-**What I did about it.** The lab is marked on Part 3's three basemaps, so
-`lab3/app.js` keeps all three exactly as the handout publishes them — the same
-URLs, the same `subdomains: 'abcd'`, the same attribution strings — and a short
-comment at that block records the finding. Nothing is hidden. To make the rest
-of the screenshots legible, the figures below were captured with
-**OpenStreetMap** selected in the layer control; the density shading, the
-circles, the info panel and the legend are identical either way, and the last
-figure in this section shows the same dashboard over satellite imagery.
+### The fix
 
-The alternative, if the watermark is not wanted on the published page, is a
-one-line change to an equally quiet key-free basemap — Esri's Light Gray Canvas
-(`.../Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`) is the closest
-match to Positron's grey-and-quiet look, and it is also an Esri service, so the
-`{y}/{x}` lesson still applies. I have left the code faithful to the lab rather
-than make that substitution unasked.
+A free Carto Basemaps key was registered, and Positron now requests tiles with
+it. Two details in that one line are worth recording, because both fail
+silently:
+
+1. **The parameter is `key`, not `api_key`.** `?api_key=…` is ignored and the
+   endpoint keeps serving the placeholder with a `200 OK` — the map looks
+   exactly as broken as before, with no error anywhere. Carto's own sample uses
+   `?key=`.
+2. **The key is restricted by Referer**, so it only answers when the request
+   comes from the published site. It is not a secret — on a static page the key
+   is in `app.js` for anyone to read — and the Referer restriction is what makes
+   that safe. Verified: the same request from `https://zayd0123.github.io/`
+   returns a real tile, and the same request from any other referer returns
+   `403 Forbidden: a valid, authorized API key is required`.
+
+```js
+const CARTO_KEY = 'cb1_…';
+const positron = L.tileLayer(
+  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=' + CARTO_KEY, {
+  maxZoom: 19,
+  subdomains: 'abcd',
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+});
+```
+
+Tiles were checked at every zoom the map allows — 5, 6, 8, 10, 12 and 14 — over
+Islamabad, and all six return real tiles rather than the placeholder. The
+template, the `subdomains: 'abcd'` and the attribution are otherwise exactly as
+the handout publishes them, so Part 3's lesson about copying a provider's
+template precisely still stands, and the watermark is gone from the published
+page.
+
+**Locally**, the Referer is `localhost` rather than `zayd0123.github.io`, and
+Carto requires local hosts to be on a key of their own, so a second key was
+registered for that. The figures in this report were captured with
+**OpenStreetMap** selected, so that they are reproducible without any key at
+all; the density shading, the circles, the info panel and the legend are
+identical whichever basemap is underneath.
 
 ---
 

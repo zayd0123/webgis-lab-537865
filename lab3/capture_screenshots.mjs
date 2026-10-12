@@ -277,6 +277,11 @@ try {
   await cdp.shot('checkpoint3_esri_satellite_basemap');
 
   // ---- the Carto placeholder, as evidence for the report note ---------
+  // Kept as the record of what the problem looked like. Now that app.js sends
+  // the API key this capture would show a working map, so do NOT re-run this
+  // block to regenerate the figure - the existing
+  // checkpoint3b_carto_positron_api_key_required.png is the evidence and is
+  // deliberately not overwritten.
   await cdp.load(BASE);
   await cdp.run(`map.setView([27.7, 68.9], 7, { animate: false });`);
   await cdp.settle(3200);
