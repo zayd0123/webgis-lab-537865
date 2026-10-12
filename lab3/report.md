@@ -108,15 +108,23 @@ built with QGIS's two geometry tools and exported as the handout specifies.
 | | |
 |---|---|
 | File | `lab3/data/district_points.geojson` |
+| Tool | QGIS 4.2.3, **Vector ▸ Geometry Tools ▸ Point on Surface** (`native:pointonsurface`) |
 | Features | **160** (confirmed in the attribute table) |
-| Size | **53.8 KB (55,120 bytes)** |
+| Size | **53.8 KB (55,113 bytes)** |
 | CRS | EPSG:4326 |
 | COORDINATE_PRECISION | 5 |
 | Attributes | all five inherited from the district, including `pop_2023` |
+| Points falling outside their own district | **0 of 160** |
+
+This was done in QGIS itself, by calling the same Processing algorithms the
+menus call, and the whole thing is reproducible:
+`lab3/make_point_layer_qgis.py` writes the layer the page fetches, and
+`lab3/qgis_part2.py` runs both tools, checks the result, and exports the figure.
+`lab3/QGIS.md` has the commands and the by-hand GUI route.
 
 ### The district whose centroid falls outside it
 
-> **Sibi**, in Balochistan. Its centre of mass falls **0.0240° (about 2.7 km)
+> **Sibi**, in Balochistan. Its centre of mass falls **0.02402° (about 2.7 km)
 > outside** its own boundary, inside **Harnai**.
 
 Sibi is a crescent, with a long narrow arm reaching north-east. The balance
@@ -125,37 +133,58 @@ district, rather than in the body of Sibi. One district in 160 does this. The
 next closest are Nagar (0.0093° *inside*) and Nankana Sahib (0.0119° *inside*),
 so Sibi is not a marginal case — it is the only one.
 
-![Sibi: centroid against point on surface](Report/checkpoint2_sibi_centroid_vs_point_on_surface.png)
-
-*The same finding drawn from `lab3/data/districts.geojson`: the red cross is the
-centroid, in Harnai; the blue dot is Point on Surface, inside Sibi. The QGIS
-screenshot below is the version for marking.*
-
 **Checkpoint 2 — QGIS, both points on Sibi**
 
-> **REPLACE THIS BLOCK.** QGIS screenshot, zoomed to Sibi, showing the red
-> Centroids point outside the boundary and the blue Point on Surface point
-> inside it. Steps are in `lab3/QGIS.md`:
-> 1. Drag `lab3/data/districts.geojson` into QGIS.
-> 2. **Vector ▸ Geometry Tools ▸ Centroids**, then the same menu for
->    **Point on Surface**.
-> 3. Style them differently, select Sibi in the attribute table, **Zoom to
->    Layer**, screenshot.
+![Sibi: centroid against Point on Surface, exported from QGIS](Report/checkpoint2_sibi_qgis.png)
 
-### Why the point layer is not shapely's `representative_point()`
+*Exported from QGIS 4.2.3. Left: the close-up, with the red square (Centroids)
+sitting in Harnai across the boundary and the blue dot (Point on Surface) inside
+Sibi. Right: the whole district, where the cause is visible — the long arm
+reaching north-east pulls the centre of mass south-west into the notch. The
+scale bar reads 10 km.*
 
-Both are "a point on the surface", but they are not the same point. Shapely's
-uses the pole of inaccessibility — the centre of the largest circle that fits
-inside the polygon — while QGIS uses the centre of the bounding box, falling
-back to the nearest point on the polygon. On Gwadar, whose coastline is deeply
-concave, **the two land 0.877° apart**. Since the screenshots for this lab come
-from QGIS, `lab3/make_point_layer.py` reproduces QGIS's algorithm, so the
-committed points are the ones the QGIS tool produces.
+![The same finding, drawn from the two QGIS layers](Report/checkpoint2_sibi_centroid_vs_point_on_surface.png)
+
+*The same two QGIS layers, drawn with matplotlib, annotating the 0.02402°
+overshoot directly.*
+
+### Why the layer is not shapely's `representative_point()`
+
+The first version of this layer was built with shapely, assuming QGIS's Point on
+Surface and shapely's `representative_point()` were the same point. **They are
+not, and the gap is large:** shapely uses the pole of inaccessibility — the
+centre of the largest circle that fits inside the polygon — while QGIS's
+algorithm is a different construction. On Gwadar, whose coastline is deeply
+concave, **the two land 0.877° apart**, and running QGIS's own algorithm moved
+**all 160** of the earlier points.
+
+So the committed layer is QGIS's output rather than an approximation of it, and
+`qgis_part2.py` checks the two against each other every time it runs. The
+largest remaining difference is **0.00000704°** (Jhelum Valley), which is the
+5-decimal rounding and nothing else.
 
 ```
-python3 lab3/make_point_layer.py     # rebuilds the file
-python3 lab3/check_point_layer.py    # prints the Sibi evidence above
+$APP/Contents/MacOS/python lab3/make_point_layer_qgis.py   # rebuilds the file in QGIS
+$APP/Contents/MacOS/python lab3/qgis_part2.py              # both tools + Checkpoint 2 figure
+python3 lab3/check_point_layer.py                          # prints the Sibi evidence
 ```
+
+### Three QGIS 4 behaviours worth knowing
+
+Each of these produced a wrong figure before it was understood, and each is
+worked around in `qgis_part2.py`:
+
+1. **A `Cross`/`Cross2` marker renders only its stroke** and ignores its fill, so
+   a red cross with a white outline draws **white** — invisible on a white page,
+   and apparently empty in the legend. The figure uses a red **square** instead.
+2. **`QgsLayoutItemMap` does not inherit the project's layers.** Without an
+   explicit `setLayers()`, the layout exports blank frames even when the layers
+   are in the project.
+3. **`QgsLayoutItemScaleBar` collapses in PyQt6.** It sizes segments through
+   `QSizeF`, which is integer-based there, so a 25 mm segment rounds to 25
+   *pixels*: the bar draws at no width and its numbers overlap
+   (`5,000 10,000 m`). The figure draws the bar from the map's own scale — at
+   1:397,892, 10 km is 25.13 mm.
 
 ---
 
@@ -692,14 +721,17 @@ side by side — the measurements are in §6.
 | `lab3/style.css` | page and control styling |
 | `lab3/app.js` | the dashboard, blocks labelled by Part |
 | `lab3/data/districts.geojson` | 160 districts (copied from Lab 2) |
-| `lab3/data/district_points.geojson` | 160 district points, QGIS Point on Surface |
-| `lab3/make_point_layer.py` | rebuilds the point layer |
+| `lab3/data/district_points.geojson` | 160 district points, from QGIS `native:pointonsurface` |
+| `lab3/data/qgis_centroids.geojson`, `qgis_point_on_surface.geojson` | the two QGIS tools' own output |
+| `lab3/make_point_layer_qgis.py` | rebuilds the point layer in QGIS |
+| `lab3/qgis_part2.py` | runs both QGIS tools and exports the Checkpoint 2 figure |
+| `lab3/sibi_centroid_comparison.qgz` | the QGIS project for the comparison |
 | `lab3/check_point_layer.py` | prints the Sibi evidence |
-| `lab3/make_sibi_figure.py` | draws the centroid comparison figure |
+| `lab3/make_sibi_figure.py` | the matplotlib version of the centroid figure |
 | `lab3/check_dashboard.mjs` | 43 automated checks in headless Chrome |
 | `lab3/measure_renderers.mjs` | the Part 9 SVG/canvas measurements |
 | `lab3/capture_screenshots.mjs` | captures the figures in this report |
-| `lab3/QGIS.md` | the Part 2 QGIS steps and screenshot recipe |
+| `lab3/QGIS.md` | the Part 2 QGIS work, the GUI route, and the QGIS 4 findings |
 | `lab3/Report/` | the figures |
 
 The three `.mjs` scripts drive real Chrome over the DevTools protocol and need

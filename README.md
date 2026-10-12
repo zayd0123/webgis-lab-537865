@@ -40,6 +40,11 @@ been put behind an API key since the handout was written, so it now returns
 as the lab publishes them; the other two are unaffected, and
 [`lab3/report.md`](lab3/report.md) §0 has the details and the evidence.
 
+The Part 2 point layer was built in QGIS 4.2.3 with the **Point on Surface**
+tool, and the centroid comparison came out of the same run:
+[`lab3/QGIS.md`](lab3/QGIS.md) records the Sibi finding, the commands, and three
+QGIS 4 layout behaviours worth knowing about.
+
 ## The data
 
 `data/districts.geojson` holds 160 district polygons with five attributes:
