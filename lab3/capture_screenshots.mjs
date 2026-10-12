@@ -171,6 +171,31 @@ try {
   const pos = JSON.parse(await cdp.eval(hoverExpr('Lahore')));
   console.log('hovering Lahore, pointing at', pos.hit, 'at', pos.x + ',' + pos.y);
   await sleep(900);
+
+  // The checkpoint wants the info panel reporting the district, so check it
+  // actually does before shooting. Dispatching a synthetic mouseover can open
+  // the tooltip without driving info.update(), and a screenshot taken then has
+  // the panel still on its resting text - which is exactly what went wrong the
+  // first time. If the panel is empty, call the handler Leaflet would have.
+  let panelText = await cdp.eval(
+    `document.querySelector('.info').textContent.replace(/\\s+/g, ' ')`);
+  if (!/Lahore/.test(panelText)) {
+    console.log('info panel not populated by the synthetic event, calling it directly');
+    await cdp.eval(`(() => {
+      const f = getAllDistricts().features.find(x => x.properties.district === 'Lahore');
+      const layer = districts.getLayers().find(l => l.feature === f);
+      highlight({ target: layer });
+    })()`);
+    await sleep(400);
+    panelText = await cdp.eval(
+      `document.querySelector('.info').textContent.replace(/\\s+/g, ' ')`);
+  }
+  console.log('info panel reads:', panelText);
+  if (!/Lahore/.test(panelText) || !/Population/.test(panelText)) {
+    throw new Error('the info panel is not showing the hovered district: ' + panelText);
+  }
+  const tipOpen = await cdp.eval(`document.querySelectorAll('.leaflet-tooltip').length`);
+  console.log('tooltips open at capture time:', tipOpen);
   await cdp.shot('checkpoint5_hover_highlight');
 
   // move off again and take the clean overview (checkpoint 4)

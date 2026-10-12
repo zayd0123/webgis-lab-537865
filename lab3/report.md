@@ -538,9 +538,31 @@ time the page prints itself:
 | Hover highlight still works? | yes | yes |
 | Can you inspect one district in Elements? | yes — one `path.leaflet-interactive` per district, with its own `d` and `fill` | no — one canvas, pixels only, no per-feature element |
 
-![SVG: 160 path elements in the overlay pane](Report/checkpoint9a_svg_overlay_pane.png)
+**Checkpoint 9 — the Elements tab in both modes**
 
-![Canvas: a single canvas element](Report/checkpoint9b_canvas_overlay_pane.png)
+![Elements tab, SVG: the overlay pane holds one svg.leaflet-zoom-animated](Report/checkpoint9a_svg_overlay_pane.png)
+
+*Chrome's Elements tab on `index.html`. The search box reads
+`leaflet-overlay-pane`, 1 of 1, and the tree is expanded to
+`div.leaflet-map-pane ▸ div.leaflet-overlay-pane ▸ svg.leaflet-zoom-animated` —
+one `<svg>` element carrying every district and every circle. The console below
+reads `draw(all): 160 districts in … SVG`.*
+
+![Elements tab, canvas: the same pane holds a single canvas element](Report/checkpoint9b_canvas_overlay_pane.png)
+
+*The same panel on `index.html?canvas` — note the address bar. The same pane now
+holds a single `<canvas class="leaflet-zoom-animated" width="2580" height="1846">`
+and no SVG at all, and the console reads `draw(all): 160 districts in 23.9 ms,
+canvas`. That contrast is the whole difference between the two rows of the table
+above: 160 inspectable elements against one bitmap. The `404 (File not found)`
+in the SVG shot's console is the Carto Positron basemap, the API-key problem
+recorded in §0; it does not affect the renderer comparison.*
+
+Both were captured from Chrome's Elements tab by hand. The panel's tree is
+Lit-virtualised and would not take synthetic events, so
+`lab3/capture_devtools_elements.mjs` reliably opened the panel, set the search
+box and expanded down to the panes, but the disclosure clicks landed only about
+one run in three — hence the manual captures.
 
 **The two renderers are a tie, at 22.8 ms against 22.3 ms** — a 0.5 ms
 difference, which is smaller than the spread within either set of five runs
