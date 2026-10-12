@@ -37,9 +37,10 @@ canvas rendering cost.
 One note for anyone opening it. The Carto Positron basemap the lab specifies was
 put behind an API key after the handout was written, so it returned "API KEY
 REQUIRED" placeholder tiles as a `200 OK`. That is fixed: a free Carto Basemaps
-key is used via `?key=`, and the watermark is gone. The key is restricted by
-Referer to `zayd0123.github.io`, so it works on the published page and nowhere
-else — to run the page locally, swap in a localhost key.
+key is used via `?key=`, and the watermark is gone. Carto requires local hosts
+to have a key of their own, so `lab3/app.js` holds two free keys and picks one
+by hostname: the published site and localhost both render the basemap with no
+changes needed.
 [`lab3/report.md`](lab3/report.md) §0 has the measurements and the details.
 
 The Part 2 point layer was built in QGIS 4.2.3 with the **Point on Surface**

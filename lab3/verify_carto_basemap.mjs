@@ -7,9 +7,10 @@
  * their colours: the placeholder has ~16 colours and is 2,049 bytes, a real
  * Positron tile has many more.
  *
- * Run it against the published site, which is what the Referer restriction
- * allows; against localhost the tiles 403 and this reports a failure, which is
- * the correct answer there.
+ * app.js holds two keys and picks by hostname, so this passes on the published
+ * site and on localhost alike. It fails if the wrong key is selected for the
+ * host, which is the mistake worth catching: the Referer restriction means the
+ * localhost key is refused by the published site and the other way round.
  *
  *   node lab3/verify_carto_basemap.mjs https://zayd0123.github.io/webgis-lab-537865/lab3/index.html
  */
@@ -43,10 +44,13 @@ try {
   await new Promise((r) => ws.addEventListener('open', r, { once: true }));
   let id = 0; const pend = new Map();
   const events = [];
+  const reqUrls = new Map();
   ws.addEventListener('message', (e) => {
     const m = JSON.parse(e.data);
     if (m.id && pend.has(m.id)) { pend.get(m.id)(m.result); pend.delete(m.id); }
-    else if (m.method) events.push(m);
+    else if (m.method === 'Network.requestWillBeSent') {
+      reqUrls.set(m.params.requestId, m.params.request.url);
+    } else if (m.method) events.push(m);
   });
   const send = (method, params = {}, sessionId) => new Promise((res) => {
     const i = ++id; pend.set(i, res);
@@ -107,8 +111,17 @@ try {
   console.log('probe of one tile      :', JSON.stringify(p));
 
   const failed = events.filter((e) => e.method === 'Network.loadingFailed');
-  const cartoFailed = failed.length;
-  console.log('network failures       :', cartoFailed);
+  console.log('network failures       :', failed.length);
+  const byKind = {};
+  for (const e of failed) {
+    const u = reqUrls.get(e.params.requestId) || '';
+    const kind = /cartocdn/.test(u) ? 'carto tile'
+      : /\.(png|jpg|jpeg|svg|gif)$/i.test(u) ? 'other image'
+      : /\.(js|css)$/i.test(u) ? 'script/style'
+      : 'other';
+    byKind[kind] = (byKind[kind] || 0) + 1;
+  }
+  console.log('  by kind              :', JSON.stringify(byKind));
 
   const colours = p.colours || 0;
   const verdict = p.status === 200 && colours > 40 && info.broken === 0;
