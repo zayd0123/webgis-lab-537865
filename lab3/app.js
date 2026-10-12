@@ -42,17 +42,20 @@ const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 });
 
-// The handout's three basemaps, kept exactly as it publishes them.
+// The handout's three basemaps, kept as it publishes them.
 //
-// Note for anyone reading this later: since the lab was written, Carto has put
-// its basemaps behind an API key. Positron now returns 256 px "API KEY
-// REQUIRED" placeholder tiles from basemaps.cartocdn.com, so the default
-// basemap shows that watermark. The other two are unaffected. The URL, the
-// subdomains and the attribution are left alone because Part 3 asks for them
-// copied exactly, and because a key can be dropped in later without touching
-// anything else. See the note in report.md.
+// Carto has since put its basemaps behind an API key: without one, Positron
+// returns a 256 px "API KEY REQUIRED" placeholder as a 200 OK, so the default
+// basemap drew that watermark instead of a map. The parameter is `key` - not
+// `api_key`, which is silently ignored and keeps serving the placeholder - and
+// the key is restricted by Referer to the published site, so it only works on
+// zayd0123.github.io. Locally, swap in the localhost key from the Carto
+// dashboard, or this basemap will 403 and Leaflet will draw an empty tile.
+// The URL template, the subdomains and the attribution are otherwise untouched.
+const CARTO_KEY = 'cb1_4iei_1_cecead15e5448ff173211382';
+
 const positron = L.tileLayer(
-  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=' + CARTO_KEY, {
   maxZoom: 19,
   subdomains: 'abcd',
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO'

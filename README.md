@@ -34,11 +34,13 @@ population drawn a second time as proportional circles in a pane of their own,
 map events that can be switched on and off, and a measurement of what SVG and
 canvas rendering cost.
 
-One note for anyone opening it. The Carto Positron basemap the lab specifies has
-been put behind an API key since the handout was written, so it now returns
-"API KEY REQUIRED" placeholder tiles. The code keeps all three basemaps exactly
-as the lab publishes them; the other two are unaffected, and
-[`lab3/report.md`](lab3/report.md) §0 has the details and the evidence.
+One note for anyone opening it. The Carto Positron basemap the lab specifies was
+put behind an API key after the handout was written, so it returned "API KEY
+REQUIRED" placeholder tiles as a `200 OK`. That is fixed: a free Carto Basemaps
+key is used via `?key=`, and the watermark is gone. The key is restricted by
+Referer to `zayd0123.github.io`, so it works on the published page and nowhere
+else — to run the page locally, swap in a localhost key.
+[`lab3/report.md`](lab3/report.md) §0 has the measurements and the details.
 
 The Part 2 point layer was built in QGIS 4.2.3 with the **Point on Surface**
 tool, and the centroid comparison came out of the same run:
