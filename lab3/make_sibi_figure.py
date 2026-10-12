@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """
-Lab 3, Part 2 - the figure for "which district's centroid falls outside it?".
+Lab 3, Part 2 - the matplotlib version of the centroid figure.
 
-Draws Sibi's boundary with both candidate points on it, so the difference
-between Centroids and Point on Surface is visible without opening QGIS. The
-QGIS screenshot in the report is still the one that counts; this is the same
-finding, at a scale where it can be seen.
+The QGIS figure that goes in the report is drawn by `qgis_part2.py`, inside
+QGIS. This one draws the same finding with matplotlib, reading the same two
+point layers QGIS produced, so it can be regenerated on a machine without QGIS.
+
+Both points come from the files QGIS wrote:
+
+    data/qgis_centroids.geojson           native:centroids
+    data/qgis_point_on_surface.geojson    native:pointonsurface
 
     python3 lab3/make_sibi_figure.py
 """
@@ -21,8 +25,17 @@ from shapely.ops import nearest_points
 
 HERE = Path(__file__).resolve().parent
 DISTRICTS = HERE / "data" / "districts.geojson"
+CENTROIDS = HERE / "data" / "qgis_centroids.geojson"
+ON_SURFACE = HERE / "data" / "qgis_point_on_surface.geojson"
 OUT = HERE / "Report" / "checkpoint2_sibi_centroid_vs_point_on_surface.png"
 TARGET = "Sibi"
+
+
+def point_from(path: Path, district: str) -> Point:
+    for f in json.loads(path.read_text())["features"]:
+        if f["properties"]["district"] == district:
+            return Point(*f["geometry"]["coordinates"])
+    raise SystemExit(f"{district} not found in {path.name}")
 
 
 def main() -> None:
@@ -30,10 +43,9 @@ def main() -> None:
     feature = next(f for f in features if f["properties"]["district"] == TARGET)
     geom = shape(feature["geometry"])
 
-    centroid = geom.centroid
-    xmin, ymin, xmax, ymax = geom.bounds
-    candidate = Point((xmin + xmax) / 2, (ymin + ymax) / 2)
-    on_surface = candidate if geom.contains(candidate) else nearest_points(candidate, geom)[1]
+    # both from QGIS
+    centroid = point_from(CENTROIDS, TARGET)
+    on_surface = point_from(ON_SURFACE, TARGET)
 
     fig, ax = plt.subplots(figsize=(9, 8), dpi=140)
 
@@ -60,11 +72,11 @@ def main() -> None:
                 arrowprops=dict(arrowstyle="->", color="#9c4221", lw=1.1),
                 zorder=5)
 
-    ax.plot(*centroid.xy, marker="X", markersize=13, color="#c53030",
-            markeredgecolor="white", markeredgewidth=1.2, zorder=4,
+    ax.plot(centroid.x, centroid.y, marker="X", markersize=13, color="#c53030",
+            markeredgecolor="white", markeredgewidth=1.2, zorder=4, linestyle="none",
             label="Centroids - centre of mass (outside the district)")
-    ax.plot(*on_surface.xy, marker="o", markersize=11, color="#2b6cb0",
-            markeredgecolor="white", markeredgewidth=1.2, zorder=4,
+    ax.plot(on_surface.x, on_surface.y, marker="o", markersize=11, color="#2b6cb0",
+            markeredgecolor="white", markeredgewidth=1.2, zorder=4, linestyle="none",
             label="Point on Surface - inside the district")
 
     # how far outside, and the shortest way back in
