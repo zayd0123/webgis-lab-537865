@@ -11,6 +11,15 @@ National University of Sciences and Technology, Islamabad
 | Reg # | 537865 |
 | Submitted to | Dr. Shahid Nawaz Khan |
 
+> **All labs now live in one repository:** <https://github.com/zayd0123/webgis-537865>
+>
+> The Lab 01 handout specifies that this is the semester project and every later
+> lab adds a commit to it, so Labs 1, 2 and 3 were consolidated there as `lab1/`,
+> `lab2/` and `lab3/`, with a landing page at <https://zayd0123.github.io/webgis-537865/>.
+>
+> This repository is kept unchanged so the Lab 2 URL already submitted still
+> resolves. Its content is identical to `lab2/` and `lab3/` in the canonical one.
+
 Two labs live in this repository. Each one sits in a folder below the lab it
 builds on, so nothing already published has moved.
 
